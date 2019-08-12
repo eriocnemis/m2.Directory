@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    layout="admin-2columns-left"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Eriocnemis\Directory\Block\Adminhtml\Region\Edit" name="region_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tabs" name="region_tabs">
+                <block class="Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab\General" name="region_tab_general"/>
+                <block class="Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab\Label" name="region_tab_label"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">general</argument>
+                    <argument name="block" xsi:type="string">region_tab_general</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">label</argument>
+                    <argument name="block" xsi:type="string">region_tab_label</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>	
+</page>

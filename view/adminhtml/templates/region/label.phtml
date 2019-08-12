@@ -1,0 +1,86 @@
+<?php
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<fieldset class="admin__fieldset fieldset">
+    <div class="admin__control-table-wrapper" id="manage-options-panel" data-index="attribute_options_select_container">
+        <table class="admin__control-table" data-index="attribute_options_select">
+            <thead>
+                <tr id="attribute-options-table">
+                    <th class="col-default control-table-actions-th">
+                        <span><?= $block->escapeHtml(__('Language')) ?></span>
+                    </th>
+                    <th class="col-default control-table-actions-th">
+                        <span><?= $block->escapeHtml(__('Region Name')) ?></span>
+                    </th>
+                    <th class="col-delete">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody data-role="options-container" class="ignore-validate">
+                <?php foreach ($block->getLabels() as $locale => $name) : ?>
+                    <tr>
+                        <td><?= $block->getLocaleSelectHtml($locale) ?></td>
+                        <td>
+                            <input name="region[labels][<?= $block->escapeHtml($locale) ?>][name]"
+                                   value="<?= $block->escapeHtml($name) ?>"
+                                   class="input-text"
+                                   type="text"/>
+                        </td>
+                        <td id="delete_button_container_<?= $block->escapeHtml($locale) ?>" class="col-delete">
+                            <input type="hidden"
+                                   class="delete-flag"
+                                   name="region[labels][<?= $block->escapeHtml($locale) ?>][delete]"/>
+                            <button id="delete_button_<?= $block->escapeHtml($locale) ?>"
+                                    type="button"
+                                    class="action- scalable delete delete-option">
+                                <span><?= $block->escapeHtml(__('Delete')) ?></span>
+                            </button>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="3" class="col-actions-add">
+                        <button id="add_new_option_button"
+                                data-action="add_new_row"
+                                type="button"
+                                class="action- scalable add">
+                            <span><?= $block->escapeHtml(__('Add Locale')) ?></span>
+                        </button>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+        <input type="hidden" id="option-count-check" value=""/>
+    </div>
+    <script id="row-template" type="text/x-magento-template">
+        <tr <% if (data.rowClasses) { %>class="<%- data.rowClasses %>"<% } %>>
+            <td class="col-<%- data.id %>"><?= $block->getLocaleSelectHtml() ?></td>
+            <td class="col-<%- data.id %>">
+                <input name="region[labels][<%- data.id %>][name]"
+                       value="<%- data.name %>"
+                       class="input-text" type="text"/>
+            </td>
+            <td id="delete_button_container_<%- data.id %>" class="col-delete">
+                <input type="hidden" class="delete-flag" name="region[labels][<%- data.id %>][delete]" value=""/>
+                <?php if (!$block->getReadOnly()) : ?>
+                    <button id="delete_button_<%- data.id %>"
+                            type="button"
+                            class="action- scalable delete delete-option">
+                        <span><?= $block->escapeHtml(__('Delete')) ?></span>
+                    </button>
+                <?php endif ?>
+            </td>
+        </tr>
+    </script>
+    <script type="text/x-magento-init">
+        {
+            "#manage-options-panel": {
+                "Eriocnemis_Directory/js/sortable": {}
+            }
+        }
+    </script>
+</fieldset>

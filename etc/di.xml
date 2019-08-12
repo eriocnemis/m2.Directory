@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- ui grid -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="eriocnemis_directory_region_listing_data_source" xsi:type="string">Eriocnemis\Directory\Model\ResourceModel\Region\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Eriocnemis\Directory\Model\ResourceModel\Region\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">directory_country_region</argument>
+            <argument name="eventPrefix" xsi:type="string">eriocnemis_directory_region_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">collection</argument>
+            <argument name="resourceModel" xsi:type="string">Eriocnemis\Directory\Model\ResourceModel\Region</argument>
+        </arguments>
+    </virtualType>
+</config>
