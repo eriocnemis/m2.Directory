@@ -5,10 +5,10 @@
  */
 namespace Eriocnemis\Directory\Block\Adminhtml\Region;
 
-use \Magento\Framework\Registry;
-use \Magento\Backend\Block\Widget\Context;
-use \Magento\Backend\Block\Widget\Form\Container;
-use \Eriocnemis\Directory\Model\RegistryConstant;
+use Magento\Framework\Registry;
+use Magento\Backend\Block\Widget\Context;
+use Magento\Backend\Block\Widget\Form\Container;
+use Eriocnemis\Directory\Model\RegistryConstant;
 
 /**
  * Edit form

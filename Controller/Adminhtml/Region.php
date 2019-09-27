@@ -5,16 +5,16 @@
  */
 namespace Eriocnemis\Directory\Controller\Adminhtml;
 
-use \Magento\Framework\Registry;
-use \Magento\Framework\App\Response\Http\FileFactory;
-use \Magento\Framework\Exception\LocalizedException;
-use \Magento\Backend\App\Action;
-use \Magento\Backend\App\Action\Context;
-use \Magento\Ui\Component\MassAction\Filter;
-use \Psr\Log\LoggerInterface;
-use \Eriocnemis\Directory\Model\ResourceModel\Region\CollectionFactory as RegionCollectionFactory;
-use \Eriocnemis\Directory\Model\RegionFactory;
-use \Eriocnemis\Directory\Model\RegistryConstant;
+use Magento\Framework\Registry;
+use Magento\Framework\App\Response\Http\FileFactory;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Ui\Component\MassAction\Filter;
+use Psr\Log\LoggerInterface;
+use Eriocnemis\Directory\Model\ResourceModel\Region\CollectionFactory as RegionCollectionFactory;
+use Eriocnemis\Directory\Model\RegionFactory;
+use Eriocnemis\Directory\Model\RegistryConstant;
 
 /**
  * Region abstract controller

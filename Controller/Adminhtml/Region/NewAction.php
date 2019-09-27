@@ -5,8 +5,8 @@
  */
 namespace Eriocnemis\Directory\Controller\Adminhtml\Region;
 
-use \Magento\Framework\App\ResponseInterface;
-use \Eriocnemis\Directory\Controller\Adminhtml\Region as Action;
+use Magento\Framework\App\ResponseInterface;
+use Eriocnemis\Directory\Controller\Adminhtml\Region as Action;
 
 /**
  * NewAction controller

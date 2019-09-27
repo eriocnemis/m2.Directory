@@ -5,7 +5,7 @@
  */
 namespace Eriocnemis\Directory\Block\Adminhtml\Region\Edit;
 
-use \Magento\Backend\Block\Widget\Form\Generic;
+use Magento\Backend\Block\Widget\Form\Generic;
 
 /**
  * Region form

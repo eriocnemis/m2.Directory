@@ -5,8 +5,8 @@
  */
 namespace Eriocnemis\Directory\Model;
 
-use \Magento\Framework\Model\AbstractModel;
-use \Eriocnemis\Directory\Model\ResourceModel\Region as RegionResource;
+use Magento\Framework\Model\AbstractModel;
+use Eriocnemis\Directory\Model\ResourceModel\Region as RegionResource;
 
 /**
  * Region

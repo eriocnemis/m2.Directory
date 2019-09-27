@@ -5,13 +5,13 @@
  */
 namespace Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab;
 
-use \Magento\Framework\Data\Form;
-use \Magento\Framework\Data\Form\Element\AbstractElement;
-use \Magento\Framework\Data\Form\Element\Renderer\RendererInterface;
-use \Magento\Backend\Block\Widget\Form\Generic;
-use \Magento\Backend\Block\Widget\Tab\TabInterface;
-use \Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab\Label\Renderer as LabelRenderer;
-use \Eriocnemis\Directory\Model\RegistryConstant;
+use Magento\Framework\Data\Form;
+use Magento\Framework\Data\Form\Element\AbstractElement;
+use Magento\Framework\Data\Form\Element\Renderer\RendererInterface;
+use Magento\Backend\Block\Widget\Form\Generic;
+use Magento\Backend\Block\Widget\Tab\TabInterface;
+use Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab\Label\Renderer as LabelRenderer;
+use Eriocnemis\Directory\Model\RegistryConstant;
 
 /**
  * Label tab

@@ -5,7 +5,7 @@
  */
 namespace Eriocnemis\Directory\Block\Adminhtml\Region\Edit;
 
-use \Magento\Backend\Block\Widget\Tabs as AbstractTabs;
+use Magento\Backend\Block\Widget\Tabs as AbstractTabs;
 
 /**
  * Region tabs

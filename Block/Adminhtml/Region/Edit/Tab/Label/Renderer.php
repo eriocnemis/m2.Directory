@@ -5,15 +5,15 @@
  */
 namespace Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab\Label;
 
-use \Magento\Framework\Registry;
-use \Magento\Framework\Data\Form\Element\Renderer\RendererInterface;
-use \Magento\Framework\Data\Form\Element\AbstractElement;
-use \Magento\Framework\View\Element\Html\Select;
-use \Magento\Backend\Block\Template\Context;
-use \Magento\Backend\Block\Widget;
-use \Magento\Config\Model\Config\Source\Locale as LocaleSource;
-use \Eriocnemis\Directory\Model\RegionFactory;
-use \Eriocnemis\Directory\Model\RegistryConstant;
+use Magento\Framework\Registry;
+use Magento\Framework\Data\Form\Element\Renderer\RendererInterface;
+use Magento\Framework\Data\Form\Element\AbstractElement;
+use Magento\Framework\View\Element\Html\Select;
+use Magento\Backend\Block\Template\Context;
+use Magento\Backend\Block\Widget;
+use Magento\Config\Model\Config\Source\Locale as LocaleSource;
+use Eriocnemis\Directory\Model\RegionFactory;
+use Eriocnemis\Directory\Model\RegistryConstant;
 
 /**
  * Region tab label renderer

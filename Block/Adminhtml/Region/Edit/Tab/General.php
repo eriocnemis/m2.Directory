@@ -5,14 +5,14 @@
  */
 namespace Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab;
 
-use \Magento\Framework\Registry;
-use \Magento\Framework\Data\Form;
-use \Magento\Framework\Data\FormFactory;
-use \Magento\Backend\Block\Template\Context;
-use \Magento\Backend\Block\Widget\Form\Generic;
-use \Magento\Backend\Block\Widget\Tab\TabInterface;
-use \Magento\Config\Model\Config\Source\Locale\Country as CountrySource;
-use \Eriocnemis\Directory\Model\RegistryConstant;
+use Magento\Framework\Registry;
+use Magento\Framework\Data\Form;
+use Magento\Framework\Data\FormFactory;
+use Magento\Backend\Block\Template\Context;
+use Magento\Backend\Block\Widget\Form\Generic;
+use Magento\Backend\Block\Widget\Tab\TabInterface;
+use Magento\Config\Model\Config\Source\Locale\Country as CountrySource;
+use Eriocnemis\Directory\Model\RegistryConstant;
 
 /**
  * General tab
