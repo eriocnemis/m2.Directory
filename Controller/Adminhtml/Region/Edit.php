@@ -23,7 +23,7 @@ class Edit extends Action
     {
         $this->_view->loadLayout();
         $this->_setActiveMenu(
-            'Eriocnemis_Lottery::region'
+            'Eriocnemis_Directory::directory_region'
         )->_addBreadcrumb(
             __('Regions'),
             __('Regions')
