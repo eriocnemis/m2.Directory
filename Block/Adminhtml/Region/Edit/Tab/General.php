@@ -6,20 +6,17 @@
 namespace Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab;
 
 use Magento\Framework\Registry;
-use Magento\Framework\Data\Form;
 use Magento\Framework\Data\FormFactory;
 use Magento\Backend\Block\Template\Context;
-use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Backend\Block\Widget\Tab\TabInterface;
 use Magento\Config\Model\Config\Source\Locale\Country as CountrySource;
-use Eriocnemis\Directory\Model\Constant;
 
 /**
  * General tab
  *
  * @api
  */
-class General extends Generic implements TabInterface
+class General extends AbstractTab implements TabInterface
 {
     /**
      * Country source
@@ -101,22 +98,16 @@ class General extends Generic implements TabInterface
      */
     protected function _prepareForm()
     {
-        $region = $this->_coreRegistry->registry(
-            Constant::CURRENT_REGION
-        );
+        parent::_prepareForm();
 
-        /** @var Form $form */
-        $form = $this->_formFactory->create();
-        $form->setHtmlIdPrefix('region_');
-
-        $fieldset = $form->addFieldset(
+        $fieldset = $this->getForm()->addFieldset(
             'general_fieldset',
             [
                 'legend' => __('General Information')
             ]
         );
 
-        if ($region->getId()) {
+        if ($this->region->getId()) {
             $fieldset->addField(
                 'region_id',
                 'hidden',
@@ -159,15 +150,21 @@ class General extends Generic implements TabInterface
             ]
         );
 
-        $form->setFieldNameSuffix('region');
-        $form->setValues($region->getData());
-        $this->setForm($form);
+        return $this;
+    }
 
+    /**
+     * Initialize form fields values
+     *
+     * @return $this
+     */
+    protected function _initFormValues()
+    {
         $this->_eventManager->dispatch(
             'eriocnemis_directory_region_edit_tab_general_prepare_form',
-            ['form' => $form]
+            ['form' => $this->getForm()]
         );
 
-        return parent::_prepareForm();
+        return parent::_initFormValues();
     }
 }

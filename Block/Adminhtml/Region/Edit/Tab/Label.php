@@ -5,20 +5,15 @@
  */
 namespace Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab;
 
-use Magento\Framework\Data\Form;
-use Magento\Framework\Data\Form\Element\AbstractElement;
-use Magento\Framework\Data\Form\Element\Renderer\RendererInterface;
-use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Backend\Block\Widget\Tab\TabInterface;
 use Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab\Label\Renderer as LabelRenderer;
-use Eriocnemis\Directory\Model\Constant;
 
 /**
  * Label tab
  *
  * @api
  */
-class Label extends Generic implements TabInterface
+class Label extends AbstractTab implements TabInterface
 {
     /**
      * Retrieve Tab label
@@ -67,15 +62,9 @@ class Label extends Generic implements TabInterface
      */
     protected function _prepareForm()
     {
-        $region = $this->_coreRegistry->registry(
-            Constant::CURRENT_REGION
-        );
+        parent::_prepareForm();
 
-        /** @var Form $form */
-        $form = $this->_formFactory->create();
-        $form->setHtmlIdPrefix('region_');
-
-        $fieldset = $form->addFieldset(
+        $fieldset = $this->getForm()->addFieldset(
             'label_fieldset',
             [
                 'legend' => __('Labels')
@@ -92,21 +81,29 @@ class Label extends Generic implements TabInterface
             ]
         );
 
-        /** @var AbstractElement $element */
-        $element = $form->getElement('labels');
-        /** @var RendererInterface $renderer */
-        $renderer = $this->getLayout()->createBlock(LabelRenderer::class);
+        /** @var \Magento\Framework\Data\Form\Element\AbstractElement $element */
+        $element = $this->getForm()->getElement('labels');
+        /** @var \Magento\Framework\Data\Form\Element\Renderer\RendererInterface $renderer */
+        $renderer = $this->getLayout()->createBlock(
+            LabelRenderer::class
+        );
         $element->setRenderer($renderer);
 
-        $form->setFieldNameSuffix('region');
-        $form->setValues($region->getData());
-        $this->setForm($form);
+        return $this;
+    }
 
+    /**
+     * Initialize form fields values
+     *
+     * @return $this
+     */
+    protected function _initFormValues()
+    {
         $this->_eventManager->dispatch(
             'eriocnemis_directory_region_edit_tab_label_prepare_form',
-            ['form' => $form]
+            ['form' => $this->getForm()]
         );
 
-        return parent::_prepareForm();
+        return parent::_initFormValues();
     }
 }
