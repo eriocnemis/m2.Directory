@@ -17,6 +17,8 @@ use Eriocnemis\Directory\Model\ResourceModel\Region as RegionResource;
  * @method string getCountryId()
  * @method Region setCode(string $code)
  * @method string getCode()
+ * @method Region setLabels(array $labels)
+ * @method array getLabels()
  */
 class Region extends AbstractModel
 {
@@ -42,5 +44,20 @@ class Region extends AbstractModel
     protected function _construct()
     {
         $this->_init(RegionResource::class);
+    }
+
+    /**
+     * Save labels
+     *
+     * @return $this
+     */
+    public function afterSave()
+    {
+        if ($this->hasData('labels')) {
+            /** @var RegionResource $resource */
+            $resource = $this->getResource();
+            $resource->saveLabels($this->getId(), $this->getLabels() ?: []);
+        }
+        return parent::afterSave();
     }
 }
