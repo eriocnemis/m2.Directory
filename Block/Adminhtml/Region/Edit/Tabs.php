@@ -11,6 +11,9 @@ use Magento\Backend\Block\Widget\Tabs as AbstractTabs;
  * Region tabs
  *
  * @api
+ *
+ * @method Tabs setId(string $id)
+ * @method Tabs setTitle(string $title)
  */
 class Tabs extends AbstractTabs
 {
