@@ -6,10 +6,10 @@
 namespace Eriocnemis\Directory\Model;
 
 /**
- * Registry constants
+ * Constants
  *
  */
-class RegistryConstant
+class Constant
 {
     /**
      * Key for current region in registry

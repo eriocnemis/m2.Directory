@@ -12,7 +12,7 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Backend\Block\Widget\Tab\TabInterface;
 use Magento\Config\Model\Config\Source\Locale\Country as CountrySource;
-use Eriocnemis\Directory\Model\RegistryConstant;
+use Eriocnemis\Directory\Model\Constant;
 
 /**
  * General tab
@@ -102,7 +102,7 @@ class General extends Generic implements TabInterface
     protected function _prepareForm()
     {
         $region = $this->_coreRegistry->registry(
-            RegistryConstant::CURRENT_REGION
+            Constant::CURRENT_REGION
         );
 
         /** @var Form $form */

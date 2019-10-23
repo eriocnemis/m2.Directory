@@ -13,7 +13,7 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget;
 use Magento\Config\Model\Config\Source\Locale as LocaleSource;
 use Eriocnemis\Directory\Model\RegionFactory;
-use Eriocnemis\Directory\Model\RegistryConstant;
+use Eriocnemis\Directory\Model\Constant;
 
 /**
  * Region tab label renderer
@@ -100,7 +100,7 @@ class Renderer extends Widget implements RendererInterface
         $resource = $this->regionFactory->create()->getResource();
         return $resource->getLabels(
             $this->coreRegistry->registry(
-                RegistryConstant::CURRENT_REGION_ID
+                Constant::CURRENT_REGION_ID
             )
         );
     }

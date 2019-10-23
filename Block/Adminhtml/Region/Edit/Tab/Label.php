@@ -11,7 +11,7 @@ use Magento\Framework\Data\Form\Element\Renderer\RendererInterface;
 use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Backend\Block\Widget\Tab\TabInterface;
 use Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab\Label\Renderer as LabelRenderer;
-use Eriocnemis\Directory\Model\RegistryConstant;
+use Eriocnemis\Directory\Model\Constant;
 
 /**
  * Label tab
@@ -68,7 +68,7 @@ class Label extends Generic implements TabInterface
     protected function _prepareForm()
     {
         $region = $this->_coreRegistry->registry(
-            RegistryConstant::CURRENT_REGION
+            Constant::CURRENT_REGION
         );
 
         /** @var Form $form */

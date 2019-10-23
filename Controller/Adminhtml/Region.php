@@ -14,7 +14,7 @@ use Magento\Ui\Component\MassAction\Filter;
 use Psr\Log\LoggerInterface;
 use Eriocnemis\Directory\Model\ResourceModel\Region\CollectionFactory as RegionCollectionFactory;
 use Eriocnemis\Directory\Model\RegionFactory;
-use Eriocnemis\Directory\Model\RegistryConstant;
+use Eriocnemis\Directory\Model\Constant;
 
 /**
  * Region abstract controller
@@ -123,12 +123,12 @@ abstract class Region extends Action
         }
         /* register current region */
         $this->coreRegistry->register(
-            RegistryConstant::CURRENT_REGION,
+            Constant::CURRENT_REGION,
             $region
         );
         /* register current region id */
         $this->coreRegistry->register(
-            RegistryConstant::CURRENT_REGION_ID,
+            Constant::CURRENT_REGION_ID,
             $region->getId()
         );
         return $region;

@@ -8,7 +8,7 @@ namespace Eriocnemis\Directory\Block\Adminhtml\Region;
 use Magento\Framework\Registry;
 use Magento\Backend\Block\Widget\Context;
 use Magento\Backend\Block\Widget\Form\Container;
-use Eriocnemis\Directory\Model\RegistryConstant;
+use Eriocnemis\Directory\Model\Constant;
 
 /**
  * Edit form
@@ -78,7 +78,7 @@ class Edit extends Container
     public function getHeaderText()
     {
         $region = $this->coreRegistry->registry(
-            RegistryConstant::CURRENT_REGION
+            Constant::CURRENT_REGION
         );
         return ($region->getId())
             ? __("Edit Region '%1'", $this->escapeHtml($region->getDefaultName()))
