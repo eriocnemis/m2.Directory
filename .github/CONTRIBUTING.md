@@ -17,4 +17,4 @@ If you are a new GitHub user, we recommend that you create your own [free github
 ## Code of Conduct
 
 Please note that this project is released with a Contributor Code of Conduct. We expect you to agree to its terms when participating in this project.
-The full text is available in the repository (https://github.com/eriocnemis/m2.Directory/blob/master/CODE_OF_CONDUCT.md).
+The full text is available in the repository (https://github.com/eriocnemis/m2.Directory/blob/master/.github/CODE_OF_CONDUCT.md).
