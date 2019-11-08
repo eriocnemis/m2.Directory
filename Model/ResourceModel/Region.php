@@ -45,7 +45,7 @@ class Region extends AbstractRegion
         $toDelete = [];
 
         foreach ($labels as $code => $label) {
-            if (!empty($label['delete'])) {
+            if (!empty($label['delete']) || empty($label['name'])) {
                 $toDelete[] = $label['locale'];
                 continue;
             }
