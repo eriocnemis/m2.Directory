@@ -9,7 +9,7 @@ use Magento\Framework\Model\AbstractModel;
 use Eriocnemis\Directory\Model\ResourceModel\Region as RegionResource;
 
 /**
- * Region
+ * Region model
  *
  * @method Region setDefaultName(string $name)
  * @method string getDefaultName()
