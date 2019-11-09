@@ -135,6 +135,7 @@ class General extends AbstractTab implements TabInterface
                 'name' => 'default_name',
                 'label' => __('Default Name'),
                 'title' => __('Default Name'),
+                'note' => __('Region name in regional language.'),
                 'required' => true
             ]
         );

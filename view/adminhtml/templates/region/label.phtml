@@ -25,7 +25,7 @@
                         <td>
                             <input name="region[labels][<?= $block->escapeHtml($locale) ?>][name]"
                                    value="<?= $block->escapeHtml($name) ?>"
-                                   class="input-text"
+                                   class="input-text validate-no-empty"
                                    type="text"/>
                         </td>
                         <td id="delete_button_container_<?= $block->escapeHtml($locale) ?>" class="col-delete">
