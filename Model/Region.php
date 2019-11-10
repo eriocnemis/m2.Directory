@@ -5,7 +5,12 @@
  */
 namespace Eriocnemis\Directory\Model;
 
+use Magento\Framework\Data\Collection\AbstractDb;
+use Magento\Framework\Registry;
 use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Model\Context;
+use Magento\Framework\Model\ResourceModel\AbstractResource;
+use Eriocnemis\Directory\Model\Region\CompositeValidator;
 use Eriocnemis\Directory\Model\ResourceModel\Region as RegionResource;
 
 /**
@@ -37,6 +42,42 @@ class Region extends AbstractModel
     protected $_eventObject = 'region';
 
     /**
+     * Region composite validator
+     *
+     * @var CompositeValidator
+     */
+    protected $compositeValidator;
+
+    /**
+     * Initialize model
+     *
+     * @param Context $context
+     * @param Registry $registry
+     * @param AbstractResource $resource
+     * @param AbstractDb $resourceCollection
+     * @param CompositeValidator $compositeValidator
+     * @param array $data
+     */
+    public function __construct(
+        Context $context,
+        Registry $registry,
+        AbstractResource $resource = null,
+        AbstractDb $resourceCollection = null,
+        CompositeValidator $compositeValidator,
+        array $data = []
+    ) {
+        $this->compositeValidator = $compositeValidator;
+
+        parent::__construct(
+            $context,
+            $registry,
+            $resource,
+            $resourceCollection,
+            $data
+        );
+    }
+
+    /**
      * Model construct that should be used for object initialization
      *
      * @return void
@@ -44,6 +85,17 @@ class Region extends AbstractModel
     protected function _construct()
     {
         $this->_init(RegionResource::class);
+    }
+
+    /**
+     * Validate region attribute values
+     *
+     * @return array|bool
+     */
+    public function validate()
+    {
+        $errors = $this->compositeValidator->validate($this);
+        return empty($errors) ? true : $errors;
     }
 
     /**

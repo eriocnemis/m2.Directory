@@ -7,6 +7,16 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- validator -->
+    <type name="Eriocnemis\Directory\Model\Region\CompositeValidator">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="general" xsi:type="object">Eriocnemis\Directory\Model\Region\Validator\General</item>
+                <item name="country" xsi:type="object">Eriocnemis\Directory\Model\Region\Validator\Country</item>
+                <item name="label" xsi:type="object">Eriocnemis\Directory\Model\Region\Validator\Label</item>
+            </argument>
+        </arguments>
+    </type>
     <!-- ui grid -->
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>

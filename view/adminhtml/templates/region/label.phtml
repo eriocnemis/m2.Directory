@@ -18,14 +18,15 @@
                     <th class="col-delete">&nbsp;</th>
                 </tr>
             </thead>
-            <tbody data-role="options-container" class="ignore-validate">
+            <tbody data-role="options-container">
                 <?php foreach ($block->getLabels() as $locale => $name): ?>
                     <tr>
                         <td><?= $block->getLocaleSelectHtml($locale) ?></td>
                         <td>
                             <input name="region[labels][<?= $block->escapeHtml($locale) ?>][name]"
                                    value="<?= $block->escapeHtml($name) ?>"
-                                   class="input-text validate-no-empty"
+                                   class="input-text"
+                                   data-validate="{'required':true}"
                                    type="text"/>
                         </td>
                         <td id="delete_button_container_<?= $block->escapeHtml($locale) ?>" class="col-delete">
@@ -54,13 +55,14 @@
                 </tr>
             </tfoot>
         </table>
-        <input type="hidden" id="option-count-check" value=""/>
+        <input type="hidden" id="label-count-check" value="" data-validate="{'required-label-rows':true}"/>
     </div>
     <script id="row-template" type="text/x-magento-template">
         <tr <% if (data.rowClasses) { %>class="<%- data.rowClasses %>"<% } %>>
             <td class="col-<%- data.id %>"><?= $block->getLocaleSelectHtml() ?></td>
             <td class="col-<%- data.id %>">
                 <input name="region[labels][<%- data.id %>][name]"
+                       data-validate="{'required':true}"
                        value="<%- data.name %>"
                        class="input-text" type="text"/>
             </td>

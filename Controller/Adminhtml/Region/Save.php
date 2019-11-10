@@ -30,14 +30,23 @@ class Save extends Action
                 $region = $this->initRegion('region_id');
                 $region->addData($data);
 
-                $this->_session->setRegionData($region->getData());
-                $region->save();
+                $this->_session->setRegionData($data);
+                $result = $region->validate();
 
-                $this->messageManager->addSuccess(__('You saved the region.'));
-                $this->_session->setRegionData(false);
+                if (true !== $result && is_array($result)) {
+                    foreach ($result as $errorMessage) {
+                        $this->messageManager->addError($errorMessage);
+                    }
+                } else {
+                    $region->save();
+                    $this->_session->setRegionData(false);
+                    $this->messageManager->addSuccess(
+                        __('You saved the region.')
+                    );
+                }
 
                 if ($back) {
-                    return $this->_redirect('*/*/edit', ['id' => $region->getId(), '_current' => true]);
+                    return $this->_redirect('*/*/edit', ['id' => $id, '_current' => true]);
                 }
             } catch (LocalizedException $e) {
                 $this->_session->setRegionData($data);

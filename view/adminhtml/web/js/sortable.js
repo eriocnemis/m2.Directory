@@ -5,8 +5,7 @@
 define([
     'jquery',
     'mage/template',
-    'mage/calendar',
-    'jquery/ui'
+    'mage/backend/validation'
 ], function ($, template) {
     'use strict';
 
@@ -44,6 +43,26 @@ define([
                 this.initSortable();
             }
             this.initButton();
+            this.addValidation();
+        },
+
+        /**
+         * Add validation rule
+         * @return {void}
+         */
+        addValidation: function () {
+            $.validator.addMethod(
+                'required-label-rows', function (value, element) {
+                    var labelFlag = false;
+                    $('[data-role=options-container]').find('tr').each(function () {
+                        if (!$(this).hasClass('no-display')) {
+                            labelFlag = true;
+                        }
+                    });
+                    return labelFlag;
+                },
+                $.mage.__('Please specify at least one label.')
+            );
         },
 
         /**
