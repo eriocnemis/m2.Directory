@@ -53,17 +53,17 @@ class Region extends AbstractModel
      *
      * @param Context $context
      * @param Registry $registry
+     * @param CompositeValidator $compositeValidator
      * @param AbstractResource $resource
      * @param AbstractDb $resourceCollection
-     * @param CompositeValidator $compositeValidator
      * @param array $data
      */
     public function __construct(
         Context $context,
         Registry $registry,
+        CompositeValidator $compositeValidator,
         AbstractResource $resource = null,
         AbstractDb $resourceCollection = null,
-        CompositeValidator $compositeValidator,
         array $data = []
     ) {
         $this->compositeValidator = $compositeValidator;
