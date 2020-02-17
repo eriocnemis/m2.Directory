@@ -6,7 +6,6 @@
 namespace Eriocnemis\Directory\Model\ResourceModel;
 
 use Magento\Framework\DB\Adapter\AdapterInterface;
-use Magento\Framework\Model\AbstractModel;
 use Magento\Directory\Model\ResourceModel\Region as AbstractRegion;
 
 /**
