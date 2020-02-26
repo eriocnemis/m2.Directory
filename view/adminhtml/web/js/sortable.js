@@ -150,7 +150,7 @@ define([
             var element = $(event.target).closest('tr');
             if (element.length) {
                 element.find('.delete-flag').val(1);
-                element.addClass('no-display').hide();
+                element.addClass('no-display').addClass('ignore-validate').hide();
             }
         },
 

@@ -29,6 +29,7 @@ class Label implements ValidatorInterface
             foreach ($labels as $label) {
                 if (!empty($label['delete'])) {
                     $count--;
+                    continue;
                 }
 
                 if (!\Zend_Validate::is($label['locale'] ?? '', 'NotEmpty')) {
