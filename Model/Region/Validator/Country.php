@@ -5,7 +5,7 @@
  */
 namespace Eriocnemis\Directory\Model\Region\Validator;
 
-use Magento\Directory\Model\AllowedCountries;
+use Magento\Directory\Api\CountryInformationAcquirerInterface;
 use Eriocnemis\Directory\Model\Region\ValidatorInterface;
 use Eriocnemis\Directory\Model\Region;
 
@@ -15,21 +15,21 @@ use Eriocnemis\Directory\Model\Region;
 class Country implements ValidatorInterface
 {
     /**
-     * Allowed countries list
+     * Country repository
      *
-     * @var AllowedCountries
+     * @var CountryInformationAcquirerInterface
      */
-    protected $countries;
+    protected $repository;
 
     /**
      * Initialize validator
      *
-     * @param AllowedCountries $countries
+     * @param CountryInformationAcquirerInterface $repository
      */
     public function __construct(
-        AllowedCountries $countries
+        CountryInformationAcquirerInterface $repository
     ) {
-        $this->countries = $countries;
+        $this->repository = $repository;
     }
 
     /**
@@ -46,13 +46,16 @@ class Country implements ValidatorInterface
             $errors[] = __(
                 'Country field is required. Enter and try again.'
             );
-        } elseif (!in_array($countryId, $this->countries->getAllowedCountries(), true)) {
-            $errors[] = __(
-                'Invalid value of %1 provided for the Country field.',
-                $countryId
-            );
+        } else {
+            try {
+                $this->repository->getCountryInfo($countryId);
+            } catch (\Exception $e) {
+                $errors[] = __(
+                    'Invalid value of %1 provided for the Country field.',
+                    $countryId
+                );
+            }
         }
-
         return $errors;
     }
 }

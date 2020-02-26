@@ -24,3 +24,5 @@
 "Region Code field is required. Enter and try again.","Region Code field is required. Enter and try again."
 "Country field is required. Enter and try again.","Country field is required. Enter and try again."
 "Invalid value of %1 provided for the Country field.","Invalid value of %1 provided for the Country field."
+"You deleted the region %1.","You deleted the region %1."
+"We can\'t load the region right now.","We can\'t load the region right now."

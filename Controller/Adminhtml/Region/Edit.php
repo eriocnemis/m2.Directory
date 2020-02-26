@@ -41,10 +41,15 @@ class Edit extends Action
         try {
             $region = $this->initRegion();
         } catch (LocalizedException $e) {
-            $this->messageManager->addError($e->getMessage());
+            $this->messageManager->addError(
+                $e->getMessage()
+            );
             return $this->_redirect('*/*/*');
         } catch (\Exception $e) {
             $this->logger->critical($e);
+            $this->messageManager->addError(
+                __('We can\'t load the region right now.')
+            );
             return $this->_redirect('*/*/');
         }
 

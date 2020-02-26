@@ -21,24 +21,25 @@ class Delete extends Action
      */
     public function execute()
     {
-        $id = $this->getRequest()->getParam('id');
         try {
             /** @var \Eriocnemis\Directory\Model\Region $region */
             $region = $this->initRegion();
             $region->delete();
 
             $this->messageManager->addSuccess(
-                __('You deleted the region.')
+                __('You deleted the region %1.', $region->getDefaultName())
             );
-            return $this->_redirect('*/*/index');
+            return $this->_redirect('*/*/');
         } catch (LocalizedException $e) {
-            $this->messageManager->addError($e->getMessage());
+            $this->messageManager->addError(
+                $e->getMessage()
+            );
         } catch (\Exception $e) {
+            $this->logger->critical($e);
             $this->messageManager->addError(
                 __('We can\'t delete the region right now. Please review the log and try again.')
             );
-            $this->logger->critical($e);
         }
-        $this->_redirect('*/*/*', ['id' => $id, '_current' => true]);
+        $this->_redirect('*/*/edit', ['_current' => true]);
     }
 }

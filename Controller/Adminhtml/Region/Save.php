@@ -21,46 +21,44 @@ class Save extends Action
      */
     public function execute()
     {
-        $id = $this->getRequest()->getParam('region_id');
-        $data = $this->getRequest()->getPostValue('region');
+        $back = $this->getRequest()->getParam('back', false);
+        $data = $this->getRequest()->getPost('region');
         if ($data) {
             try {
-                $back = $this->getRequest()->getParam('back', false);
-
-                $region = $this->initRegion('region_id');
+                $region = $this->initRegion();
                 $region->addData($data);
 
                 $this->_session->setRegionData($data);
+                /* validate region */
                 $result = $region->validate();
-
                 if (true !== $result && is_array($result)) {
                     foreach ($result as $errorMessage) {
                         $this->messageManager->addError($errorMessage);
                     }
                 } else {
+                    /* save region */
                     $region->save();
                     $this->_session->setRegionData(false);
                     $this->messageManager->addSuccess(
                         __('You saved the region.')
                     );
                 }
-
-                if ($back) {
-                    return $this->_redirect('*/*/edit', ['id' => $id, '_current' => true]);
-                }
             } catch (LocalizedException $e) {
                 $this->_session->setRegionData($data);
                 $this->messageManager->addError(
                     $e->getMessage()
                 );
-                return $this->_redirect('*/*/edit', ['id' => $id, '_current' => true]);
+                $back = true;
             } catch (\Exception $e) {
                 $this->logger->critical($e);
                 $this->messageManager->addError(
                     __('We can\'t save the region right now.')
                 );
-                return $this->_redirect('*/*/edit', ['id' => $id, '_current' => true]);
             }
+        }
+
+        if ($back && $region->getId()) {
+            return $this->_redirect('*/*/edit', ['region_id' => $region->getId(), '_current' => true]);
         }
         return $this->_redirect('*/*/');
     }

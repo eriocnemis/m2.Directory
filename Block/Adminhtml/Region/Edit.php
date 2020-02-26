@@ -51,7 +51,7 @@ class Edit extends Container
      */
     protected function _construct()
     {
-        $this->_objectId = 'id';
+        $this->_objectId = 'region_id';
         $this->_controller = 'adminhtml_region';
         $this->_blockGroup = 'Eriocnemis_Directory';
 
@@ -83,5 +83,25 @@ class Edit extends Container
         return ($region->getId())
             ? __("Edit Region '%1'", $this->escapeHtml($region->getDefaultName()))
             : __('New Region');
+    }
+
+    /**
+     * Return save url for edit form
+     *
+     * @return string
+     */
+    public function getSaveUrl()
+    {
+        return $this->getUrl('*/*/save', ['_current' => true, 'back' => null]);
+    }
+
+    /**
+     * Return save and continue url for edit form
+     *
+     * @return string
+     */
+    public function getSaveAndContinueUrl()
+    {
+        return $this->getUrl('*/*/save', ['_current' => true, 'back' => 'edit']);
     }
 }

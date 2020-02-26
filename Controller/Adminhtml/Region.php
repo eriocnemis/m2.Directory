@@ -105,32 +105,35 @@ abstract class Region extends Action
     /**
      * Initialize proper region
      *
-     * @param string $requestParam
      * @return \Eriocnemis\Directory\Model\Region
      * @throws LocalizedException
      */
-    protected function initRegion($requestParam = 'id')
+    protected function initRegion()
     {
-        $id = $this->getRequest()->getParam($requestParam, 0);
+        $regionId = $this->getRequest()->getParam('region_id', null);
         $region = $this->regionFactory->create();
-        if ($id) {
-            $region->load($id);
+
+        if ($regionId) {
+            $region->load($regionId);
             if (!$region->getId()) {
                 throw new LocalizedException(
                     __('Please correct the region you requested.')
                 );
             }
         }
+
         /* register current region */
         $this->coreRegistry->register(
             Constant::CURRENT_REGION,
             $region
         );
+
         /* register current region id */
         $this->coreRegistry->register(
             Constant::CURRENT_REGION_ID,
             $region->getId()
         );
+
         return $region;
     }
 }
