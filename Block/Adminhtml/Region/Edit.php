@@ -66,7 +66,7 @@ class Edit extends Container
                     'mage-init' => ['button' => ['event' => 'saveAndContinueEdit', 'target' => '#edit_form']],
                 ]
             ],
-            3
+            -100
         );
     }
 
