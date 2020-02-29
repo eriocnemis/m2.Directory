@@ -10,8 +10,8 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Magento_Backend::system">
-                    <resource id="Magento_Backend::directory" title="Geographic" translate="title" sortOrder="56">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::directory" title="Geography" translate="title" sortOrder="56">
                         <resource id="Magento_Backend::directory_region" title="Regions" translate="title" sortOrder="10"/>
                     </resource>
                 </resource>

@@ -8,7 +8,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Eriocnemis_Directory::directory" title="Geographic" translate="title" module="Magento_Backend" sortOrder="56" parent="Magento_Backend::system" resource="Magento_Backend::directory"/>
+        <add id="Eriocnemis_Directory::directory" title="Geography" translate="title" module="Magento_Backend" sortOrder="56" parent="Magento_Backend::stores" resource="Magento_Backend::directory"/>
         <add id="Eriocnemis_Directory::directory_region" title="Regions" translate="title" module="Eriocnemis_Directory" sortOrder="10" parent="Eriocnemis_Directory::directory" action="eriocnemis_directory/region" resource="Magento_Backend::directory_region"/>
     </menu>
 </config>
