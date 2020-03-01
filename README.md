@@ -4,7 +4,7 @@ The extension allows you to manage geographic regions.  For each country, you ca
 
 ## Compatibility
 
-Version | 2.0.* | 2.1.* | 2.2.* | 2.3.* | 2.4.*
+Version | 2.0.* | 2.1.* | 2.2.* | 2.3.* | 2.4 dev
 --- | --- | --- | --- | --- | ---
 Magento Community | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
 Magento Enterprise | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
