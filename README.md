@@ -9,7 +9,7 @@ Version | 2.0.* | 2.1.* | 2.2.* | 2.3.* | 2.4 dev
 Magento Community | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :white_check_mark:
 Magento Enterprise | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :white_check_mark:
 Magento Cloud | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :white_check_mark:
-Extension | [2.0.1](https://github.com/eriocnemis/m2.Directory/archive/2.0.1.zip) | [2.1.1](https://github.com/eriocnemis/m2.Directory/archive/2.1.1.zip) | [2.2.1](https://github.com/eriocnemis/m2.Directory/archive/2.2.1.zip) | [2.3.1](https://github.com/eriocnemis/m2.Directory/archive/2.3.1.zip) | -
+Extension version | [2.0.1](https://github.com/eriocnemis/m2.Directory/archive/2.0.1.zip) | [2.1.1](https://github.com/eriocnemis/m2.Directory/archive/2.1.1.zip) | [2.2.1](https://github.com/eriocnemis/m2.Directory/archive/2.2.1.zip) | [2.3.1](https://github.com/eriocnemis/m2.Directory/archive/2.3.1.zip) | -
 
 ## Install
 
