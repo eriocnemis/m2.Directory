@@ -55,7 +55,7 @@ class Uninstall implements UninstallInterface
     {
         $setup->getConnection()->dropIndex(
             $setup->getTable('directory_country_region'),
-            $setup->getIdxName('directory_country_region', ['status']),
+            $setup->getIdxName('directory_country_region', ['status'])
         );
     }
 }
