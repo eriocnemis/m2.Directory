@@ -43,22 +43,23 @@ class Save extends Action
                         __('You saved the region.')
                     );
                 }
+                if ($back) {
+                    return $this->_redirect(
+                        '*/*/edit',
+                        ['region_id' => $region->getId(), '_current' => true]
+                    );
+                }
             } catch (LocalizedException $e) {
                 $this->_session->setRegionData($data);
                 $this->messageManager->addError(
                     $e->getMessage()
                 );
-                $back = true;
             } catch (\Exception $e) {
                 $this->logger->critical($e);
                 $this->messageManager->addError(
                     __('We can\'t save the region right now.')
                 );
             }
-        }
-
-        if ($back && $region->getId()) {
-            return $this->_redirect('*/*/edit', ['region_id' => $region->getId(), '_current' => true]);
         }
         return $this->_redirect('*/*/');
     }

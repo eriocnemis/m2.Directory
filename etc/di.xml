@@ -33,4 +33,8 @@
             <argument name="resourceModel" xsi:type="string">Eriocnemis\Directory\Model\ResourceModel\Region</argument>
         </arguments>
     </virtualType>
+    <!-- plugin -->
+    <type name="Magento\Directory\Model\ResourceModel\Region\Collection">
+        <plugin name="eriocnemis_directory" type="Eriocnemis\Directory\Plugin\Directory\Model\ResourceModel\Region\CollectionPlugin"/>
+    </type>
 </config>

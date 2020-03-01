@@ -6,7 +6,6 @@
 namespace Eriocnemis\Directory\Controller\Adminhtml;
 
 use Magento\Framework\Registry;
-use Magento\Framework\App\Response\Http\FileFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -50,13 +49,6 @@ abstract class Region extends Action
     protected $logger;
 
     /**
-     * File factory
-     *
-     * @var FileFactory
-     */
-    protected $fileFactory;
-
-    /**
      * Mass action filter
      *
      * @var Filter
@@ -78,7 +70,6 @@ abstract class Region extends Action
      * @param LoggerInterface $logger
      * @param RegionCollectionFactory $collectionFactory
      * @param RegionFactory $regionFactory
-     * @param FileFactory $fileFactory
      * @param Filter $filter
      */
     public function __construct(
@@ -87,14 +78,12 @@ abstract class Region extends Action
         LoggerInterface $logger,
         RegionCollectionFactory $collectionFactory,
         RegionFactory $regionFactory,
-        FileFactory $fileFactory,
         Filter $filter
     ) {
         $this->logger = $logger;
         $this->coreRegistry = $coreRegistry;
         $this->collectionFactory = $collectionFactory;
         $this->regionFactory = $regionFactory;
-        $this->fileFactory = $fileFactory;
         $this->filter = $filter;
 
         parent::__construct(

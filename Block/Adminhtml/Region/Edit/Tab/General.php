@@ -10,6 +10,7 @@ use Magento\Framework\Data\FormFactory;
 use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget\Tab\TabInterface;
 use Magento\Config\Model\Config\Source\Locale\Country as CountrySource;
+use Eriocnemis\Directory\Model\Config\Source\Status as StatusSource;
 
 /**
  * General tab
@@ -26,12 +27,20 @@ class General extends AbstractTab implements TabInterface
     protected $countrySource;
 
     /**
+     * Status source
+     *
+     * @var StatusSource
+     */
+    protected $statusSource;
+
+    /**
      * Intialize tab
      *
      * @param Context $context
      * @param Registry $registry
      * @param FormFactory $formFactory
      * @param CountrySource $countrySource
+     * @param StatusSource $statusSource
      * @param array $data
      */
     public function __construct(
@@ -39,9 +48,11 @@ class General extends AbstractTab implements TabInterface
         Registry $registry,
         FormFactory $formFactory,
         CountrySource $countrySource,
+        StatusSource $statusSource,
         array $data = []
     ) {
         $this->countrySource = $countrySource;
+        $this->statusSource = $statusSource;
 
         parent::__construct(
             $context,
@@ -145,9 +156,22 @@ class General extends AbstractTab implements TabInterface
             'select',
             [
                 'label' => __('Country'),
+                'title' => __('Country'),
                 'name' => 'country_id',
                 'values' => $this->countrySource->toOptionArray(),
                 'required' => true
+            ]
+        );
+
+        $fieldset->addField(
+            'status',
+            'select',
+            [
+                'label' => __('Status'),
+                'title' => __('Status'),
+                'name' => 'status',
+                'required' => true,
+                'options' => $this->statusSource->toArray()
             ]
         );
 
