@@ -9,13 +9,13 @@ Version | 2.0.* | 2.1.* | 2.2.* | 2.3.* | 2.4 dev
 Magento Community | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
 Magento Enterprise | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
 Magento Cloud | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
-Extension | 2.0.* | 2.0.* | 2.0.* | 2.0.* | 2.0.*
+Extension | [2.0.1](https://github.com/eriocnemis/m2.Directory/archive/2.0.1.zip) | 2.0.* | 2.0.* | 2.0.* | 2.0.*
 
 ## Install
 
 1. Create a folder {Magento root}/app/code/Eriocnemis/Directory
 
-2. Download the corresponding [latest version](https://github.com/eriocnemis/m2.Directory/releases)
+2. Download the corresponding latest version
 
 3. Copy the unzip content to the folder ({Magento root}/app/code/Eriocnemis/Directory)
 
