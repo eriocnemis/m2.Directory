@@ -30,6 +30,17 @@ Extension | 2.0.* | 2.0.* | 2.0.* | 2.0.* | 2.0.*
 
 ## Usage
 
+### Region Edit Page: general tab
+
+<img alt="Magento2 Directory" src="http://eriocnemis.com/image/m2/directory/region.general.png" style="width:100%"/>
+
+### Region Edit Page: labels tab
+
+<img alt="Magento2 Directory" src="http://eriocnemis.com/image/m2/directory/region.label.png" style="width:100%"/>
+
+### Region Grid Page
+
+<img alt="Magento2 Directory" src="http://eriocnemis.com/image/m2/directory/regions.png" style="width:100%"/>
 
 ## Uninstall
 
