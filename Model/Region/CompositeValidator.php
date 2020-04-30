@@ -23,7 +23,7 @@ class CompositeValidator implements ValidatorInterface
     /**
      * Initialize validator
      *
-     * @param array $validators
+     * @param ValidatorInterface[] $validators
      */
     public function __construct(
         array $validators = []
@@ -41,7 +41,7 @@ class CompositeValidator implements ValidatorInterface
     /**
      * Validate region attribute values
      *
-     * @return array
+     * @return string[]
      */
     public function validate(Region $region)
     {

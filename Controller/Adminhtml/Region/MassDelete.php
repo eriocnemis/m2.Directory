@@ -47,6 +47,6 @@ class MassDelete extends Action
             );
             $this->logger->critical($e);
         }
-        $this->_redirect('*/*/index', ['_current' => true]);
+        return $this->_redirect('*/*/index', ['_current' => true]);
     }
 }

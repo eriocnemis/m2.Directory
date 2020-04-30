@@ -58,7 +58,7 @@ class Renderer extends Widget implements RendererInterface
      * @param Registry $registry
      * @param RegionFactory $regionFactory
      * @param LocaleSource $localeSource
-     * @param array $data
+     * @param string[] $data
      */
     public function __construct(
         Context $context,
@@ -92,7 +92,7 @@ class Renderer extends Widget implements RendererInterface
     /**
      * Retrieve labels data
      *
-     * @return array
+     * @return array[]
      */
     public function getLabels()
     {
@@ -150,7 +150,7 @@ class Renderer extends Widget implements RendererInterface
     /**
      * Retrieve locales select data
      *
-     * @return array
+     * @return string[]
      */
     protected function getLocaleSelectData()
     {

@@ -15,26 +15,26 @@ class Status implements ArrayInterface
     /**
      * Retrieve options as array
      *
-     * @return array
+     * @return array[]
      */
     public function toOptionArray()
     {
         return [
-            ['value' => 0, 'label' => __('Inactive')],
-            ['value' => 1, 'label' => __('Active')]
+            ['value' => '0', 'label' => __('Inactive')],
+            ['value' => '1', 'label' => __('Active')]
         ];
     }
 
     /**
      * Retrieve options in key-value format
      *
-     * @return array
+     * @return string[]
      */
     public function toArray()
     {
         return [
-            0 => __('Inactive'),
-            1 => __('Active')
+            '0' => __('Inactive'),
+            '1' => __('Active')
         ];
     }
 }

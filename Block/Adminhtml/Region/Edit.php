@@ -29,7 +29,7 @@ class Edit extends Container
      *
      * @param Context $context
      * @param Registry $registry
-     * @param array $data
+     * @param string[] $data
      */
     public function __construct(
         Context $context,

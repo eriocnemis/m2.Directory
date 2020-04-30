@@ -42,7 +42,7 @@ class General extends AbstractTab implements TabInterface
      * @param FormFactory $formFactory
      * @param CountrySource $countrySource
      * @param StatusSource $statusSource
-     * @param array $data
+     * @param string[] $data
      * @param ElementCreator $creator
      */
     public function __construct(
@@ -52,7 +52,7 @@ class General extends AbstractTab implements TabInterface
         CountrySource $countrySource,
         StatusSource $statusSource,
         array $data = [],
-        ElementCreator $creator
+        ElementCreator $creator = null
     ) {
         $this->countrySource = $countrySource;
         $this->statusSource = $statusSource;

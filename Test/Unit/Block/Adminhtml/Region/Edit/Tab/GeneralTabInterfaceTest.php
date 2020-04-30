@@ -9,17 +9,18 @@ namespace Eriocnemis\Directory\Test\Unit\Block\Adminhtml\Region\Edit\Tab;
 
 use PHPUnit\Framework\TestCase;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
-use Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab\Label as Tab;
+use Magento\Backend\Block\Widget\Tab\TabInterface;
+use Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab\General as Tab;
 
 /**
- * Test label tab
+ * Test general tab
  */
-class LabelTest extends TestCase
+class GeneralTabInterfaceTest extends TestCase
 {
     /**
      * Tab block
      *
-     * @var Tab
+     * @var TabInterface
      */
     protected $tab;
 
@@ -31,33 +32,37 @@ class LabelTest extends TestCase
     protected function setUp(): void
     {
         $objectManager = new ObjectManager($this);
-        $this->tab = $objectManager->getObject(Tab::class);
+        /** @var TabInterface $tab */
+        $tab = $objectManager->getObject(Tab::class);
+        if ($tab instanceof TabInterface) {
+            $this->tab = $tab;
+        }
     }
 
     /**
-     * Test label of tab
+     * Check Tab label
      *
      * @return void
      * @test
      */
     public function testGetTabLabel()
     {
-        $this->assertEquals('Labels', $this->tab->getTabLabel());
+        $this->assertEquals('General Information', $this->tab->getTabLabel());
     }
 
     /**
-     * Test title of tab
+     * Check Tab title
      *
      * @return void
      * @test
      */
     public function testGetTabTitle()
     {
-        $this->assertEquals('Labels', $this->tab->getTabTitle());
+        $this->assertEquals('General Information', $this->tab->getTabTitle());
     }
 
     /**
-     * Test visibility tab
+     * Check Tab visibility
      *
      * @return void
      * @test
@@ -68,7 +73,7 @@ class LabelTest extends TestCase
     }
 
     /**
-     * Test hiding tab
+     * Check Tab hiding
      *
      * @return void
      * @test

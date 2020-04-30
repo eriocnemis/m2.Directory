@@ -40,6 +40,6 @@ class Delete extends Action
                 __('We can\'t delete the region right now. Please review the log and try again.')
             );
         }
-        $this->_redirect('*/*/edit', ['_current' => true]);
+        return $this->_redirect('*/*/edit', ['_current' => true]);
     }
 }

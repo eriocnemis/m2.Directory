@@ -9,17 +9,18 @@ namespace Eriocnemis\Directory\Test\Unit\Block\Adminhtml\Region\Edit\Tab;
 
 use PHPUnit\Framework\TestCase;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
-use Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab\General as Tab;
+use Magento\Backend\Block\Widget\Tab\TabInterface;
+use Eriocnemis\Directory\Block\Adminhtml\Region\Edit\Tab\Label as Tab;
 
 /**
- * Test general tab
+ * Test label tab
  */
-class GeneralTest extends TestCase
+class LabelTabInterfaceTest extends TestCase
 {
     /**
      * Tab block
      *
-     * @var Tab
+     * @var TabInterface
      */
     protected $tab;
 
@@ -31,7 +32,11 @@ class GeneralTest extends TestCase
     protected function setUp(): void
     {
         $objectManager = new ObjectManager($this);
-        $this->tab = $objectManager->getObject(Tab::class);
+        /** @var TabInterface $tab */
+        $tab = $objectManager->getObject(Tab::class);
+        if ($tab instanceof TabInterface) {
+            $this->tab = $tab;
+        }
     }
 
     /**
@@ -42,7 +47,7 @@ class GeneralTest extends TestCase
      */
     public function testGetTabLabel()
     {
-        $this->assertEquals('General Information', $this->tab->getTabLabel());
+        $this->assertEquals('Labels', $this->tab->getTabLabel());
     }
 
     /**
@@ -53,7 +58,7 @@ class GeneralTest extends TestCase
      */
     public function testGetTabTitle()
     {
-        $this->assertEquals('General Information', $this->tab->getTabTitle());
+        $this->assertEquals('Labels', $this->tab->getTabTitle());
     }
 
     /**

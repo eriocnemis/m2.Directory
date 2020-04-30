@@ -51,6 +51,6 @@ class MassStatus extends Action
             );
             $this->logger->critical($e);
         }
-        $this->_redirect('*/*/index');
+        return $this->_redirect('*/*/index');
     }
 }

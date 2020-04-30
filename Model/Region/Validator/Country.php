@@ -35,7 +35,7 @@ class Country implements ValidatorInterface
     /**
      * Validate region attribute values
      *
-     * @return array
+     * @return string[]
      */
     public function validate(Region $region)
     {

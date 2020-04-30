@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Eriocnemis\Directory\Test\Unit\Model\Config\Source\Address;
+namespace Eriocnemis\Directory\Test\Unit\Model\Config\Source;
 
 use PHPUnit\Framework\TestCase;
 use Eriocnemis\Directory\Model\Config\Source\Status as Source;
@@ -25,7 +25,7 @@ class StatusTest extends TestCase
     /**
      * Source options
      *
-     * @var array
+     * @var string[]
      */
     protected $options = [
         '0' => 'Inactive',

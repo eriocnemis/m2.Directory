@@ -28,8 +28,8 @@ class EditAction extends Column
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
      * @param UrlInterface $urlBuilder
-     * @param array $components
-     * @param array $data
+     * @param string[] $components
+     * @param string[] $data
      */
     public function __construct(
         ContextInterface $context,
@@ -51,8 +51,8 @@ class EditAction extends Column
     /**
      * Prepare data source
      *
-     * @param array $dataSource
-     * @return array
+     * @param array[] $dataSource
+     * @return array[]
      */
     public function prepareDataSource(array $dataSource)
     {

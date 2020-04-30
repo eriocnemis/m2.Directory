@@ -17,7 +17,7 @@ class Region extends AbstractRegion
      * Retrieve labels data
      *
      * @param string $regionId
-     * @return array
+     * @return array[]
      */
     public function getLabels($regionId)
     {
@@ -35,7 +35,7 @@ class Region extends AbstractRegion
      * Save locale relations
      *
      * @param int $regionId
-     * @param array $labels
+     * @param array[] $labels
      * @return void
      */
     public function saveLabels($regionId, array $labels)
@@ -63,7 +63,7 @@ class Region extends AbstractRegion
     /**
      * Update locales
      *
-     * @param array $data
+     * @param array[] $data
      * @return void
      */
     protected function updateLocale($data)

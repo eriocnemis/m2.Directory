@@ -23,7 +23,7 @@ use Eriocnemis\Directory\Model\ResourceModel\Region as RegionResource;
  * @method Region setCode(string $code)
  * @method string getCode()
  * @method Region setLabels(array $labels)
- * @method array getLabels()
+ * @method array[] getLabels()
  */
 class Region extends AbstractModel
 {
@@ -56,7 +56,7 @@ class Region extends AbstractModel
      * @param CompositeValidator $compositeValidator
      * @param AbstractResource $resource
      * @param AbstractDb $resourceCollection
-     * @param array $data
+     * @param string[] $data
      */
     public function __construct(
         Context $context,
@@ -90,7 +90,7 @@ class Region extends AbstractModel
     /**
      * Validate region attribute values
      *
-     * @return array|bool
+     * @return string[]|bool
      */
     public function validate()
     {

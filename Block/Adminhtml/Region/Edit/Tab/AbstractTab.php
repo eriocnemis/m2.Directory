@@ -44,7 +44,7 @@ abstract class AbstractTab extends Form
      * @param Context $context
      * @param Registry $registry
      * @param FormFactory $formFactory
-     * @param array $data
+     * @param string[] $data
      * @param ElementCreator $creator
      */
     public function __construct(
@@ -52,7 +52,7 @@ abstract class AbstractTab extends Form
         Registry $registry,
         FormFactory $formFactory,
         array $data = [],
-        ElementCreator $creator
+        ElementCreator $creator = null
     ) {
         $this->coreRegistry = $registry;
         $this->formFactory = $formFactory;

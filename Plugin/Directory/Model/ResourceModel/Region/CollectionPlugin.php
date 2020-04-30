@@ -18,7 +18,7 @@ class CollectionPlugin
      * @param Subject $subject
      * @param bool $printQuery
      * @param bool $logQuery
-     * @return array
+     * @return bool[]
      */
     public function beforeLoadWithFilter(Subject $subject, $printQuery = false, $logQuery = false)
     {
