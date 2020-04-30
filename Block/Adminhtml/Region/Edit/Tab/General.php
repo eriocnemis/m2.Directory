@@ -9,6 +9,7 @@ use Magento\Framework\Registry;
 use Magento\Framework\Data\FormFactory;
 use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget\Tab\TabInterface;
+use Magento\Backend\Block\Widget\Form\Element\ElementCreator;
 use Magento\Config\Model\Config\Source\Locale\Country as CountrySource;
 use Eriocnemis\Directory\Model\Config\Source\Status as StatusSource;
 
@@ -42,6 +43,7 @@ class General extends AbstractTab implements TabInterface
      * @param CountrySource $countrySource
      * @param StatusSource $statusSource
      * @param array $data
+     * @param ElementCreator $creator
      */
     public function __construct(
         Context $context,
@@ -49,7 +51,8 @@ class General extends AbstractTab implements TabInterface
         FormFactory $formFactory,
         CountrySource $countrySource,
         StatusSource $statusSource,
-        array $data = []
+        array $data = [],
+        ElementCreator $creator
     ) {
         $this->countrySource = $countrySource;
         $this->statusSource = $statusSource;
@@ -58,7 +61,8 @@ class General extends AbstractTab implements TabInterface
             $context,
             $registry,
             $formFactory,
-            $data
+            $data,
+            $creator
         );
     }
 
@@ -185,7 +189,7 @@ class General extends AbstractTab implements TabInterface
      */
     protected function _initFormValues()
     {
-        $this->_eventManager->dispatch(
+        $this->getEventManager()->dispatch(
             'eriocnemis_directory_region_edit_tab_general_prepare_form',
             ['form' => $this->getForm()]
         );

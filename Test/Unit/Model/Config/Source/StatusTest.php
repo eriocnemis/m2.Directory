@@ -3,14 +3,17 @@
  * Copyright © Eriocnemis, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Eriocnemis\Directory\Test\Unit\Model\Config\Source\Address;
 
+use PHPUnit\Framework\TestCase;
 use Eriocnemis\Directory\Model\Config\Source\Status as Source;
 
 /**
  * Test status source
  */
-class StatusTest extends \PHPUnit\Framework\TestCase
+class StatusTest extends TestCase
 {
     /**
      * Source model

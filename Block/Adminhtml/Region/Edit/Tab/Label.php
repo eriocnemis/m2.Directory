@@ -99,7 +99,7 @@ class Label extends AbstractTab implements TabInterface
      */
     protected function _initFormValues()
     {
-        $this->_eventManager->dispatch(
+        $this->getEventManager()->dispatch(
             'eriocnemis_directory_region_edit_tab_label_prepare_form',
             ['form' => $this->getForm()]
         );
