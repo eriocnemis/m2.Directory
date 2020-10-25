@@ -1,0 +1,28 @@
+{
+    "name": "eriocnemis/module-directory",
+    "description": "The extension allows you to manage geographic regions. For each country, you can add the any region, whose name is based on a specific locale.",
+    "type": "magento2-module",
+    "version": "2.4.1",
+    "authors": [{
+        "name": "Eriocnemis Team",
+        "email": "dev.eriocnemis@gmail.com"
+    }],
+    "license": [
+        "OSL-3.0"
+    ],
+    "require": {
+        "magento/framework": "103.0.*",
+        "magento/module-config": "101.2.*",
+        "magento/module-ui": "101.2.*",
+        "magento/module-backend": "102.0.*",
+        "magento/module-directory": "100.4.*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Eriocnemis\\Directory\\": ""
+        }
+    }
+}
