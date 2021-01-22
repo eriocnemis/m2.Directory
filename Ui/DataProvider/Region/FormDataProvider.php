@@ -134,18 +134,18 @@ class FormDataProvider extends DataProvider
     /**
      * Retrieve region data
      *
-     * @param int $regionId
+     * @param int|null $regionId
      * @return mixed[]
      */
     private function loadData($regionId): array
     {
-        $data = $this->dataPersistor->get('eriocnemis_region');
-        if ($regionId) {
+        $data = $this->dataPersistor->get('eriocnemis_region') ?: [];
+        if (null !== $regionId) {
             if (empty($data['region_id']) || $data['region_id'] != $regionId) {
                 $data = $this->commandGetById->execute($regionId)->__toArray();
-                $this->dataPersistor->clear('eriocnemis_region');
             }
         }
+        $this->dataPersistor->clear('eriocnemis_region');
         return $data;
     }
 
