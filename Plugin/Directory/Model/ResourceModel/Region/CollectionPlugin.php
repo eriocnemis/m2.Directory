@@ -3,6 +3,8 @@
  * Copyright © Eriocnemis, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Eriocnemis\Directory\Plugin\Directory\Model\ResourceModel\Region;
 
 use Magento\Directory\Model\ResourceModel\Region\Collection as Subject;
@@ -18,7 +20,7 @@ class CollectionPlugin
      * @param Subject $subject
      * @param bool $printQuery
      * @param bool $logQuery
-     * @return array
+     * @return mixed[]
      */
     public function beforeLoadWithFilter(Subject $subject, $printQuery = false, $logQuery = false)
     {

@@ -3,9 +3,14 @@
  * Copyright © Eriocnemis, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Eriocnemis\Directory\Model\ResourceModel;
 
+use Magento\Framework\Api\ObjectFactory;
 use Magento\Framework\DB\Adapter\AdapterInterface;
+use Magento\Framework\Locale\ResolverInterface;
+use Magento\Framework\Model\ResourceModel\Db\Context;
 use Magento\Directory\Model\ResourceModel\Region as AbstractRegion;
 
 /**
@@ -14,59 +19,83 @@ use Magento\Directory\Model\ResourceModel\Region as AbstractRegion;
 class Region extends AbstractRegion
 {
     /**
+     * @var ObjectFactory
+     */
+    protected $objectFactory;
+
+    /**
+     * Initialize resource
+     *
+     * @param Context $context
+     * @param ResolverInterface $localeResolver
+     * @param ObjectFactory $objectFactory
+     * @param string $connectionName
+     */
+    public function __construct(
+        Context $context,
+        ResolverInterface $localeResolver,
+        ObjectFactory $objectFactory,
+        $connectionName = null
+    ) {
+        $this->objectFactory = $objectFactory;
+
+        parent::__construct(
+            $context,
+            $localeResolver,
+            $connectionName
+        );
+    }
+
+    /**
      * Retrieve labels data
      *
-     * @param string $regionId
-     * @return array
+     * @param int $regionId
+     * @return mixed[]
      */
-    public function getLabels($regionId)
+    public function getLabels($regionId): array
     {
         /** @var AdapterInterface $connection */
         $connection = $this->getConnection();
         $select = $connection->select()->from(
             $this->_regionNameTable,
             ['locale', 'name']
-        )->where('region_id = ?', $regionId);
+        )->where('region_id = ?', (string)$regionId);
 
         return $connection->fetchPairs($select);
     }
 
     /**
-     * Save locale relations
+     * Save label relations
      *
      * @param int $regionId
-     * @param array $labels
+     * @param mixed[] $labels
      * @return void
      */
-    public function saveLabels($regionId, array $labels)
+    public function saveLabels($regionId, array $labels): void
     {
-        $data = [];
-        $toDelete = [];
+        $toUpdate = [];
+        $toDelete = $this->getLabels($regionId);
 
-        foreach ($labels as $code => $label) {
-            if (!empty($label['delete']) || empty($label['name'])) {
-                $toDelete[] = $label['locale'];
-                continue;
-            }
-
-            $data[] = [
+        foreach ($labels as $locale => $name) {
+            unset($toDelete[$locale]);
+            $toUpdate[] = [
                 'region_id' => $regionId,
-                'locale' => $label['locale'],
-                'name' => $label['name']
+                'locale' => $locale,
+                'name' => $name
             ];
         }
 
-        $this->updateLocale($data);
-        $this->deleteLocale($regionId, $toDelete);
+        $this->updateLocales($toUpdate);
+        $this->deleteLocales($regionId, array_keys($toDelete));
     }
 
     /**
-     * Update locales
+     * Update labels
      *
-     * @param array $data
+     * @param mixed[] $data
      * @return void
      */
-    protected function updateLocale($data)
+    private function updateLocales($data): void
     {
         if (0 < count($data)) {
             /** @var AdapterInterface $connection */
@@ -76,13 +105,13 @@ class Region extends AbstractRegion
     }
 
     /**
-     * Delete locales
+     * Delete labels
      *
      * @param int $regionId
      * @param string[] $locales
      * @return void
      */
-    protected function deleteLocale($regionId, array $locales)
+    private function deleteLocales($regionId, array $locales): void
     {
         if (0 < count($locales)) {
             /** @var AdapterInterface $connection */

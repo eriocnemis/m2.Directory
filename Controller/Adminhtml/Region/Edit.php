@@ -3,73 +3,57 @@
  * Copyright © Eriocnemis, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Eriocnemis\Directory\Controller\Adminhtml\Region;
 
-use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Exception\LocalizedException;
-use Eriocnemis\Directory\Controller\Adminhtml\Region as Action;
+use Magento\Backend\App\Action;
+use Magento\Framework\App\Action\HttpGetActionInterface;
+use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Eriocnemis\Directory\Api\Data\RegionInterface;
 
 /**
  * Edit controller
  */
-class Edit extends Action
+class Edit extends Action implements HttpGetActionInterface
 {
     /**
-     * Init active menu and set breadcrumb
-     *
-     * @return $this
+     * Authorization level of a basic admin session
      */
-    protected function initAction()
-    {
-        $this->_view->loadLayout();
-        $this->_setActiveMenu(
-            'Eriocnemis_Directory::directory_region'
-        )->_addBreadcrumb(
-            __('Regions'),
-            __('Regions')
-        );
-        return $this;
-    }
+    const ADMIN_RESOURCE = 'Eriocnemis_Directory::region_edit';
 
     /**
      * Edit model
      *
-     * @return ResponseInterface
+     * @return ResultInterface
      */
-    public function execute()
+    public function execute(): ResultInterface
     {
+        $regionId = (int)$this->getRequest()->getParam(RegionInterface::REGION_ID);
         try {
-            $region = $this->initRegion();
-        } catch (LocalizedException $e) {
-            $this->messageManager->addError(
-                $e->getMessage()
+            /** @var \Magento\Backend\Model\View\Result\Page $result */
+            $result = $this->resultFactory->create(
+                ResultFactory::TYPE_PAGE
             );
-            return $this->_redirect('*/*/*');
-        } catch (\Exception $e) {
-            $this->logger->critical($e);
-            $this->messageManager->addError(
-                __('We can\'t load the region right now.')
+            $result->setActiveMenu('Magento_Backend::directory');
+            $result->addBreadcrumb(
+                (string)__('Directory'),
+                (string)__('Edit Region')
             );
-            return $this->_redirect('*/*/');
+            $result->getConfig()->getTitle()->prepend(
+                (string)__('Edit Region %1', 'test' /*$job->getName()*/)
+            );
+        } catch (NoSuchEntityException $e) {
+            /** @var \Magento\Framework\Controller\Result\Redirect $result */
+            $result = $this->resultRedirectFactory->create();
+            $this->messageManager->addErrorMessage(
+                (string)__('The Region with id "%1" does not exist.', $regionId)
+            );
+            $result->setPath('*/*');
         }
 
-        // set entered data if was error when we do save
-        $data = $this->_session->getRegionData(true);
-        if (!empty($data)) {
-            $region->addData($data);
-        }
-
-        $this->initAction();
-        $this->_view->getPage()->getConfig()->getTitle()->prepend(__('Regions'));
-        $this->_view->getPage()->getConfig()->getTitle()->prepend(
-            $region->getId() ? $region->getDefaultName() : __('New Region')
-        );
-
-        $this->_addBreadcrumb(
-            $region->getId() ? __('Edit Region') : __('New Region'),
-            $region->getId() ? __('Edit Region') : __('New Region')
-        );
-
-        $this->_view->renderLayout();
+        return $result;
     }
 }

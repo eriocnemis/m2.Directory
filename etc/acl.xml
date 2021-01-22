@@ -12,7 +12,10 @@
             <resource id="Magento_Backend::admin">
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::directory" title="Geography" translate="title" sortOrder="56">
-                        <resource id="Magento_Backend::directory_region" title="Regions" translate="title" sortOrder="10"/>
+                        <resource id="Eriocnemis_Directory::region" title="Regions" translate="title" sortOrder="10">
+                            <resource id="Eriocnemis_Directory::region_edit" title="Edit Region" translate="title" sortOrder="10"/>
+                            <resource id="Eriocnemis_Directory::region_delete" title="Delete Region" translate="title" sortOrder="20"/>
+                        </resource>
                     </resource>
                 </resource>
             </resource>
