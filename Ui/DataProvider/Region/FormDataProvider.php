@@ -124,11 +124,11 @@ class FormDataProvider extends DataProvider
     /**
      * Retrieve region id
      *
-     * @return int
+     * @return int|null
      */
-    private function getRegionId(): int
+    private function getRegionId(): ?int
     {
-        return (int)$this->request->getParam($this->getRequestFieldName());
+        return $this->request->getParam($this->getRequestFieldName(), null);
     }
 
     /**
@@ -139,12 +139,11 @@ class FormDataProvider extends DataProvider
      */
     private function loadData($regionId): array
     {
-        $data = [];
+        $data = $this->dataPersistor->get('eriocnemis_region');
         if ($regionId) {
-            $data = $this->dataPersistor->get('eriocnemis_region');
             if (empty($data['region_id']) || $data['region_id'] != $regionId) {
                 $data = $this->commandGetById->execute($regionId)->__toArray();
-                $this->dataPersistor->set('eriocnemis_region', $data);
+                $this->dataPersistor->clear('eriocnemis_region');
             }
         }
         return $data;
