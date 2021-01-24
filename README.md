@@ -4,14 +4,50 @@ The extension allows you to manage geographic regions.  For each country, you ca
 
 ## Compatibility
 
-Version | 2.0.* | 2.1.* | 2.2.* | 2.3.* | 2.4 dev
+Version | 2.0.* | 2.1.* | 2.2.* | 2.3.* | 2.4.*
 --- | --- | --- | --- | --- | ---
-Magento Community | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | -
-Magento Enterprise | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | -
-Magento Cloud | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | -
-Extension version | [2.0.1](https://github.com/eriocnemis/m2.Directory/archive/2.0.1.zip) | [2.1.1](https://github.com/eriocnemis/m2.Directory/archive/2.1.1.zip) | [2.2.1](https://github.com/eriocnemis/m2.Directory/archive/2.2.1.zip) | [2.3.1](https://github.com/eriocnemis/m2.Directory/archive/2.3.1.zip) | -
+Magento Community | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
+Magento Enterprise | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
+Magento Cloud | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
+Extension version | [2.0.1](https://github.com/eriocnemis/m2.Directory/archive/2.0.1.zip) | [2.1.1](https://github.com/eriocnemis/m2.Directory/archive/2.1.1.zip) | [2.2.1](https://github.com/eriocnemis/m2.Directory/archive/2.2.1.zip) | [2.3.1](https://github.com/eriocnemis/m2.Directory/archive/2.3.1.zip) | [2.4.1](https://github.com/eriocnemis/m2.Directory/archive/2.4.1.zip)
 
 ## Install
+
+#### Install via Composer (recommend)
+
+1. Go to Magento2 root folder
+
+2. Enter following commands to install module:
+
+     For Magento CE (EE) 2.0.x
+
+    ```bash
+    composer require eriocnemis/module-directory:2.0.*
+    ```
+     For Magento CE (EE) 2.1.x
+
+    ```bash
+    composer require eriocnemis/module-directory:2.1.*
+    ```
+     For Magento CE (EE) 2.2.x
+
+    ```bash
+    composer require eriocnemis/module-directory:2.2.*
+    ```
+     For Magento CE (EE) 2.3.x
+
+    ```bash
+    composer require eriocnemis/module-directory:2.3.*
+    ```
+     For Magento CE (EE) 2.4.x
+
+    ```bash
+    composer require eriocnemis/module-directory:2.4.*
+    ```
+
+   Wait while dependencies are updated.
+
+#### Manual Installation
 
 1. Create a folder {Magento root}/app/code/Eriocnemis/Directory
 
@@ -19,15 +55,17 @@ Extension version | [2.0.1](https://github.com/eriocnemis/m2.Directory/archive/2
 
 3. Copy the unzip content to the folder ({Magento root}/app/code/Eriocnemis/Directory)
 
-4. Go to Magento2 root folder
+#### Completion of installation
 
-5. Enter following commands:
+1. Go to Magento2 root folder
+
+2. Enter following commands:
 
     ```bash
     php bin/magento setup:upgrade
     php bin/magento setup:di:compile
-    php bin/magento setup:static-content:deploy  (optional)
-
+    php bin/magento setup:static-content:deploy (optional)
+    ```
 ## Usage
 
 ### Menu
@@ -46,21 +84,40 @@ Extension version | [2.0.1](https://github.com/eriocnemis/m2.Directory/archive/2
 
 <img alt="Magento2 Directory" src="http://eriocnemis.com/image/m2/directory/regions.png" style="width:100%"/>
 
+## Related Modules
+
+[Directory Import Export](https://github.com/eriocnemis/m2.DirectoryImportExport) - The extension allows admin to quickly import regions via a CSV file by one click. This simplifies the data update process of regions.
+
 ## Uninstall
 
 You can uninstall a module only if you’re certain you won’t use it. Instead of uninstalling a module, you can disable it. Pleace, create backup so you can recover the data at a later time.
+
+#### Uninstall via Composer
+
+1. Go to Magento2 root folder
+
+2. Enter following commands to remove:
+
+    ```bash
+    composer remove eriocnemis/module-directory
+    ```
+#### Manual Uninstall
 
 1. Remove the folder {Magento root}/app/code/Eriocnemis/Directory
 
 2. Go to Magento2 root folder
 
-3. Enter following commands:
+#### Completion of uninstall
+
+1. Go to Magento2 root folder
+
+2. Enter following commands:
 
     ```bash
     php bin/magento setup:upgrade
     php bin/magento setup:di:compile
-    php bin/magento setup:static-content:deploy  (optional)
-
+    php bin/magento setup:static-content:deploy (optional)
+    ```
 ## License
 
 All Free Eriocnemis extensions is distributed under the [Open Software License (OSL 3.0)](https://github.com/eriocnemis/m2.Directory/blob/master/LICENSE.md), and is thus open source software.
@@ -80,4 +137,3 @@ If you encounter any problems or bugs, please open a [issue](https://github.com/
 Also note that the issue tracker is not a support forum. If you have questions about how to use the extension, or how to get extension to work, please visit stackoverflow.com.
 
 <p align="center"><img src="https://avatars3.githubusercontent.com/u/48807026?s=48&v=4"></p>
-
