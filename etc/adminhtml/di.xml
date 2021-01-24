@@ -8,13 +8,13 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <!-- buttons configurations -->
-    <virtualType name="Eriocnemis\Directory\Ui\Component\Control\SaveSplitButton" type="Eriocnemis\TransferAdminUi\Ui\Component\Control\SaveSplitButton">
+    <virtualType name="Eriocnemis\Directory\Ui\Component\Control\SaveSplitButton" type="Eriocnemis\Directory\Ui\Component\Control\SaveSplitButton">
         <arguments>
             <argument name="targetName" xsi:type="string">eriocnemis_directory_region_form.eriocnemis_directory_region_form</argument>
             <argument name="aclResource" xsi:type="string">Magento_Backend::directory_region</argument>
         </arguments>
     </virtualType>
-    <virtualType name="Eriocnemis\Directory\Ui\Component\Control\DeleteButton" type="Eriocnemis\TransferAdminUi\Ui\Component\Control\DeleteButton">
+    <virtualType name="Eriocnemis\Directory\Ui\Component\Control\DeleteButton" type="Eriocnemis\Directory\Ui\Component\Control\DeleteButton">
         <arguments>
             <argument name="idFieldName" xsi:type="const">Eriocnemis\Directory\Api\Data\RegionInterface::REGION_ID</argument>
             <argument name="aclResource" xsi:type="string">Magento_Backend::directory_region</argument>

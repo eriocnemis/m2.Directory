@@ -14,7 +14,7 @@ use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Eriocnemis\Directory\Api\Data\RegionInterface;
-use Eriocnemis\TransferApi\Api\Export\Job\DeleteByIdInterface;
+use Eriocnemis\Directory\Api\Region\DeleteByIdInterface;
 
 /**
  * Delete controller
