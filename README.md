@@ -105,8 +105,6 @@ You can uninstall a module only if you’re certain you won’t use it. Instead 
 
 1. Remove the folder {Magento root}/app/code/Eriocnemis/Directory
 
-2. Go to Magento2 root folder
-
 #### Completion of uninstall
 
 1. Go to Magento2 root folder
