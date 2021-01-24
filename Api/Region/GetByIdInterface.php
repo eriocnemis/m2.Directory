@@ -24,5 +24,5 @@ interface GetByIdInterface
      * @return RegionInterface
      * @throws NoSuchEntityException
      */
-    public function execute($regionId);
+    public function execute($regionId): RegionInterface;
 }

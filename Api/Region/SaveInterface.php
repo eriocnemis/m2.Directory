@@ -26,5 +26,5 @@ interface SaveInterface
      * @throws CouldNotSaveException
      * @throws ValidationException
      */
-    public function execute(RegionInterface $region);
+    public function execute(RegionInterface $region): RegionInterface;
 }

@@ -123,6 +123,9 @@
                     <class name="admin__field-wide">true</class>
                 </additionalClasses>
                 <componentType>dynamicRows</componentType>
+                <dndConfig>
+                    <param name="enabled" xsi:type="boolean">false</param>
+                </dndConfig>
                 <pageSize>10</pageSize>
             </settings>
             <container name="record" component="Magento_Ui/js/dynamic-rows/record">
@@ -133,18 +136,6 @@
                         <item name="componentType" xsi:type="string">container</item>
                     </item>
                 </argument>
-                <!--<field name="position">
-                    <argument name="data" xsi:type="array">
-                        <item name="config" xsi:type="array">
-                            <item name="dataType" xsi:type="string">number</item>
-                            <item name="formElement" xsi:type="string">input</item>
-                            <item name="componentType" xsi:type="string">field</item>
-                            <item name="label" xsi:type="string" translate="true">Position</item>
-                            <item name="dataScope" xsi:type="string">position</item>
-                            <item name="visible" xsi:type="boolean">false</item>
-                        </item>
-                    </argument>
-                    </field>-->
                 <field name="locale" formElement="select" sortOrder="10">
                     <settings>
                         <dataType>text</dataType>

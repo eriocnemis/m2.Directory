@@ -25,5 +25,5 @@ interface DeleteByIdInterface
      * @throws NoSuchEntityException
      * @throws CouldNotDeleteException
      */
-    public function execute($regionId);
+    public function execute($regionId): bool;
 }

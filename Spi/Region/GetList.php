@@ -13,7 +13,7 @@ use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Eriocnemis\Directory\Api\Data\RegionSearchResultInterface;
 use Eriocnemis\Directory\Api\Data\RegionSearchResultInterfaceFactory;
 use Eriocnemis\Directory\Api\Region\GetListInterface;
-use Eriocnemis\Directory\Model\ResourceModel\Region\Collection;
+use Eriocnemis\Directory\Model\Region\Converter\ToDataConverter;
 use Eriocnemis\Directory\Model\ResourceModel\Region\CollectionFactory;
 
 /**
@@ -52,23 +52,33 @@ class GetList implements GetListInterface
     private $searchCriteriaBuilder;
 
     /**
+     * Region model converter
+     *
+     * @var ToDataConverter
+     */
+    private $toDataConverter;
+
+    /**
      * Initialize command
      *
      * @param CollectionFactory $collectionFactory
      * @param CollectionProcessorInterface $collectionProcessor
      * @param RegionSearchResultInterfaceFactory $searchResultsFactory
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param ToDataConverter $toDataConverter
      */
     public function __construct(
         CollectionFactory $collectionFactory,
         CollectionProcessorInterface $collectionProcessor,
         RegionSearchResultInterfaceFactory $searchResultsFactory,
-        SearchCriteriaBuilder $searchCriteriaBuilder
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        ToDataConverter $toDataConverter
     ) {
         $this->collectionFactory = $collectionFactory;
         $this->collectionProcessor = $collectionProcessor;
         $this->searchResultsFactory = $searchResultsFactory;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->toDataConverter = $toDataConverter;
     }
 
     /**
@@ -77,20 +87,24 @@ class GetList implements GetListInterface
      * @param SearchCriteriaInterface|null $searchCriteria
      * @return RegionSearchResultInterface
      */
-    public function execute(SearchCriteriaInterface $searchCriteria = null)
+    public function execute(SearchCriteriaInterface $searchCriteria = null): RegionSearchResultInterface
     {
-        /** @var Collection $collection */
         $collection = $this->collectionFactory->create();
-
         if (null === $searchCriteria) {
             $searchCriteria = $this->searchCriteriaBuilder->create();
         } else {
             $this->collectionProcessor->process($searchCriteria, $collection);
         }
 
+        $items = [];
+        /** @var \Eriocnemis\Directory\Model\Region $model */
+        foreach ($collection->getItems() as $model) {
+            $items[] = $this->toDataConverter->convert($model);
+        }
+
         /** @var RegionSearchResultInterface $searchResult */
         $searchResult = $this->searchResultsFactory->create();
-        $searchResult->setItems($collection->getItems());
+        $searchResult->setItems($items);
         $searchResult->setTotalCount($collection->getSize());
         $searchResult->setSearchCriteria($searchCriteria);
 

@@ -91,7 +91,7 @@ class Save implements SaveInterface
      * @throws CouldNotSaveException
      * @throws ValidationException
      */
-    public function execute(RegionInterface $region)
+    public function execute(RegionInterface $region): RegionInterface
     {
         /** @var ValidationResult $result */
         $result = $this->validator->validate($region);

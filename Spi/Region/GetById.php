@@ -66,7 +66,7 @@ class GetById implements GetByIdInterface
      * @return RegionInterface
      * @throws NoSuchEntityException
      */
-    public function execute($regionId)
+    public function execute($regionId): RegionInterface
     {
         /** @var \Magento\Framework\Model\AbstractModel $region */
         $region = $this->factory->create();

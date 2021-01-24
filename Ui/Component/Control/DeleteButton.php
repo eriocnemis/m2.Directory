@@ -146,14 +146,13 @@ class DeleteButton implements ButtonProviderInterface
     /**
      * Escape string
      *
-     * @param Phrase|string $data
+     * @param Phrase|string $string
      * @return string
      */
-    private function escape($data): string
+    private function escape($string): string
     {
-        return $this->escaper->escapeJs(
-            $this->escaper->escapeHtml((string)$data)
-        );
+        $string = $this->escaper->escapeHtml((string)$string);
+        return is_string($string) ? $this->escaper->escapeJs($string) : '';
     }
 
     /**

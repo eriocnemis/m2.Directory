@@ -57,7 +57,7 @@ class CountryValidator implements ValidatorInterface
         $errors = [];
         $countryId = trim($region->getCountryId());
         if ('' === $countryId) {
-            $errors[] = __( 'Country field is required. Enter and try again.');
+            $errors[] = __('Country field is required. Enter and try again.');
         } else {
             try {
                 $this->repository->getCountryInfo($countryId);

@@ -10,11 +10,8 @@ namespace Eriocnemis\Directory\Ui\DataProvider\Region;
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\Search\ReportingInterface;
 use Magento\Framework\Api\Search\SearchCriteriaBuilder;
-use Magento\Framework\Api\Search\SearchResultInterface;
-use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider;
-use Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 use Magento\Ui\DataProvider\Modifier\ModifierInterface;
 
@@ -25,20 +22,6 @@ use Magento\Ui\DataProvider\Modifier\ModifierInterface;
  */
 class ListingDataProvider extends DataProvider
 {
-    /**
-     * Collection processor
-     *
-     * @var CollectionProcessorInterface
-     */
-    private $collectionProcessor;
-
-    /**
-     * Collection factory
-     *
-     * @var CollectionFactory
-     */
-    private $collectionFactory;
-
     /**
      * Modifier pool
      *
@@ -56,8 +39,6 @@ class ListingDataProvider extends DataProvider
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param RequestInterface $request
      * @param FilterBuilder $filterBuilder
-     * @param CollectionProcessorInterface $collectionProcessor
-     * @param CollectionFactory $collectionFactory
      * @param PoolInterface $modifierPool
      * @param mixed[] $meta
      * @param mixed[] $data
@@ -70,14 +51,10 @@ class ListingDataProvider extends DataProvider
         SearchCriteriaBuilder $searchCriteriaBuilder,
         RequestInterface $request,
         FilterBuilder $filterBuilder,
-        CollectionProcessorInterface $collectionProcessor,
-        CollectionFactory $collectionFactory,
         PoolInterface $modifierPool,
         array $meta = [],
         array $data = []
     ) {
-        $this->collectionProcessor = $collectionProcessor;
-        $this->collectionFactory = $collectionFactory;
         $this->modifierPool = $modifierPool;
 
         parent::__construct(
@@ -121,18 +98,5 @@ class ListingDataProvider extends DataProvider
             $meta = $modifier->modifyMeta($meta);
         }
         return $meta;
-    }
-
-    /**
-     * Retrieve search result
-     *
-     * @return SearchResultInterface
-     */
-    public function getSearchResult()
-    {
-        $collection = $this->collectionFactory->getReport($this->getSearchCriteria()->getRequestName());
-        $this->collectionProcessor->process($this->getSearchCriteria(), $collection);
-
-        return $collection;
     }
 }

@@ -41,7 +41,7 @@ class DeleteById implements DeleteByIdInterface
      *
      * @var LoggerInterface
      */
-    protected $logger;
+    private $logger;
 
     /**
      * Initialize command
@@ -68,7 +68,7 @@ class DeleteById implements DeleteByIdInterface
      * @throws NoSuchEntityException
      * @throws CouldNotDeleteException
      */
-    public function execute($regionId)
+    public function execute($regionId): bool
     {
         /** @var \Magento\Framework\Model\AbstractModel $region */
         $region = $this->factory->create();

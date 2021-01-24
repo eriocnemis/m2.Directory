@@ -23,5 +23,5 @@ interface GetListInterface
      * @param SearchCriteriaInterface|null $searchCriteria
      * @return RegionSearchResultInterface
      */
-    public function execute(SearchCriteriaInterface $searchCriteria = null);
+    public function execute(SearchCriteriaInterface $searchCriteria = null): RegionSearchResultInterface;
 }

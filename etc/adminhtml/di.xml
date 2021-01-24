@@ -29,9 +29,15 @@
     </virtualType>
     <!-- data provider configurations -->
     <virtualType name="Eriocnemis\Directory\Ui\DataProvider\Region\FormModifierPool" type="Magento\Ui\DataProvider\Modifier\Pool"/>
+    <virtualType name="Eriocnemis\Directory\Ui\DataProvider\Region\ListingModifierPool" type="Magento\Ui\DataProvider\Modifier\Pool"/>
     <type name="Eriocnemis\Directory\Ui\DataProvider\Region\FormDataProvider">
         <arguments>
             <argument name="modifierPool" xsi:type="object">Eriocnemis\Directory\Ui\DataProvider\Region\FormModifierPool</argument>
+        </arguments>
+    </type>
+    <type name="Eriocnemis\Directory\Ui\DataProvider\Region\ListingDataProvider">
+        <arguments>
+            <argument name="modifierPool" xsi:type="object">Eriocnemis\Directory\Ui\DataProvider\Region\ListingModifierPool</argument>
         </arguments>
     </type>
     <!-- ui grid -->

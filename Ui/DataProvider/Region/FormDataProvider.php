@@ -128,7 +128,8 @@ class FormDataProvider extends DataProvider
      */
     private function getRegionId(): ?int
     {
-        return $this->request->getParam($this->getRequestFieldName(), null);
+        $regionId = $this->request->getParam($this->getRequestFieldName());
+        return $regionId ? (int)$regionId : null;
     }
 
     /**
