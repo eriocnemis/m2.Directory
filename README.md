@@ -9,7 +9,7 @@ Version | 2.0.* | 2.1.* | 2.2.* | 2.3.* | 2.4.*
 Magento Community | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
 Magento Enterprise | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
 Magento Cloud | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
-Extension version | [2.0.1](https://github.com/eriocnemis/m2.Directory/archive/2.0.1.zip) | [2.1.1](https://github.com/eriocnemis/m2.Directory/archive/2.1.1.zip) | [2.2.1](https://github.com/eriocnemis/m2.Directory/archive/2.2.1.zip) | [2.3.1](https://github.com/eriocnemis/m2.Directory/archive/2.3.1.zip) | [2.4.1](https://github.com/eriocnemis/m2.Directory/archive/2.4.1.zip)
+Extension version | [2.0.2](https://github.com/eriocnemis/m2.Directory/archive/2.0.2.zip) | [2.1.2](https://github.com/eriocnemis/m2.Directory/archive/2.1.2.zip) | [2.2.2](https://github.com/eriocnemis/m2.Directory/archive/2.2.2.zip) | [2.3.2](https://github.com/eriocnemis/m2.Directory/archive/2.3.2.zip) | [2.4.1](https://github.com/eriocnemis/m2.Directory/archive/2.4.1.zip)
 
 ## Install
 
@@ -137,4 +137,3 @@ If you encounter any problems or bugs, please open a [issue](https://github.com/
 Also note that the issue tracker is not a support forum. If you have questions about how to use the extension, or how to get extension to work, please visit stackoverflow.com.
 
 <p align="center"><img src="https://avatars3.githubusercontent.com/u/48807026?s=48&v=4"></p>
-
