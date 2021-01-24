@@ -7,9 +7,5 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <body>
-        <referenceContainer name="content">
-            <uiComponent name="eriocnemis_directory_region_form"/>
-        </referenceContainer>
-    </body>
+    <update handle="eriocnemis_directory_region_edit"/>
 </page>

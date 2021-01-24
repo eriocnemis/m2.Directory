@@ -3,9 +3,11 @@
  * Copyright © Eriocnemis, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Eriocnemis\Directory\Plugin\Directory\Model\ResourceModel\Region;
 
-use Magento\Directory\Model\ResourceModel\Region\Collection as Subject;
+use Magento\Framework\App\ResourceConnection\SourceProviderInterface;
 
 /**
  * Region collection plugin
@@ -15,14 +17,14 @@ class CollectionPlugin
     /**
      * Load data with filter in place
      *
-     * @param Subject $subject
+     * @param SourceProviderInterface $collection
      * @param bool $printQuery
      * @param bool $logQuery
-     * @return array
+     * @return mixed[]
      */
-    public function beforeLoadWithFilter(Subject $subject, $printQuery = false, $logQuery = false)
+    public function beforeLoadWithFilter(SourceProviderInterface $collection, $printQuery = false, $logQuery = false)
     {
-        $subject->getSelect()->where(
+        $collection->getSelect()->where(
             'main_table.status = ?',
             '1'
         );

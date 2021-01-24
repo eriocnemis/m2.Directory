@@ -3,30 +3,40 @@
  * Copyright © Eriocnemis, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Eriocnemis\Directory\Controller\Adminhtml\Region;
 
-use Magento\Framework\App\ResponseInterface;
-use Eriocnemis\Directory\Controller\Adminhtml\Region as Action;
+use Magento\Backend\App\Action;
+use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\App\Action\HttpGetActionInterface;
 
 /**
- * Region index controller
+ * Index controller
  */
-class Index extends Action
+class Index extends Action implements HttpGetActionInterface
 {
     /**
-     * Schedules list
-     *
-     * @return ResponseInterface
+     * Authorization level of a basic admin session
      */
-    public function execute()
+    const ADMIN_RESOURCE = 'Eriocnemis_Directory::region';
+
+    /**
+     * Export job list
+     *
+     * @return ResultInterface
+     */
+    public function execute(): ResultInterface
     {
-        $this->_view->loadLayout();
-        $this->_setActiveMenu(
-            'Eriocnemis_Directory::directory_region'
-        );
-        $this->_view->getPage()->getConfig()->getTitle()->prepend(
-            __('Regions')
-        );
-        $this->_view->renderLayout();
+        /** @var \Magento\Backend\Model\View\Result\Page $result */
+        $result = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+        $result->setActiveMenu('Magento_Backend::directory');
+
+        $title = $result->getConfig()->getTitle();
+        $title->prepend((string)__('Geography'));
+        $title->prepend((string)__('Regions'));
+
+        return $result;
     }
 }

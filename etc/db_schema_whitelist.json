@@ -1,0 +1,10 @@
+{
+    "directory_country_region": {
+        "column": {
+            "status": true
+        },
+        "index": {
+            "DIRECTORY_COUNTRY_REGION_STATUS": true
+        }
+    }
+}

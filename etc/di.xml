@@ -7,32 +7,25 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <!-- validator -->
-    <type name="Eriocnemis\Directory\Model\Region\CompositeValidator">
+    <!-- api preference -->
+    <preference for="Eriocnemis\Directory\Api\Data\RegionInterface" type="Eriocnemis\Directory\Model\Data\Region"/>
+    <preference for="Eriocnemis\Directory\Api\Data\Region\LabelInterface" type="Eriocnemis\Directory\Model\Data\Region\Label"/>
+    <preference for="Eriocnemis\Directory\Api\Region\SaveInterface" type="Eriocnemis\Directory\Spi\Region\Save"/>
+    <preference for="Eriocnemis\Directory\Api\Region\GetByIdInterface" type="Eriocnemis\Directory\Spi\Region\GetById"/>
+    <preference for="Eriocnemis\Directory\Api\Region\GetListInterface" type="Eriocnemis\Directory\Spi\Region\GetList"/>
+    <preference for="Eriocnemis\Directory\Api\Region\DeleteByIdInterface" type="Eriocnemis\Directory\Spi\Region\DeleteById"/>
+    <preference for="Eriocnemis\Directory\Api\Region\ValidatorInterface" type="Eriocnemis\Directory\Spi\Region\Validator"/>
+    <!-- validator configuration -->
+    <type name="Eriocnemis\Directory\Spi\Region\Validator">
         <arguments>
             <argument name="validators" xsi:type="array">
-                <item name="general" xsi:type="object">Eriocnemis\Directory\Model\Region\Validator\General</item>
-                <item name="country" xsi:type="object">Eriocnemis\Directory\Model\Region\Validator\Country</item>
-                <item name="label" xsi:type="object">Eriocnemis\Directory\Model\Region\Validator\Label</item>
+                <item name="name" xsi:type="object">Eriocnemis\Directory\Model\Region\Validator\DefaultNameValidator</item>
+                <item name="code" xsi:type="object">Eriocnemis\Directory\Model\Region\Validator\CodeValidator</item>
+                <item name="country" xsi:type="object">Eriocnemis\Directory\Model\Region\Validator\CountryValidator</item>
+                <item name="label" xsi:type="object">Eriocnemis\Directory\Model\Region\Validator\LabelValidator</item>
             </argument>
         </arguments>
     </type>
-    <!-- ui grid -->
-    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-        <arguments>
-            <argument name="collections" xsi:type="array">
-                <item name="eriocnemis_directory_region_listing_data_source" xsi:type="string">Eriocnemis\Directory\Model\ResourceModel\Region\Grid\Collection</item>
-            </argument>
-        </arguments>
-    </type>
-    <virtualType name="Eriocnemis\Directory\Model\ResourceModel\Region\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
-        <arguments>
-            <argument name="mainTable" xsi:type="string">directory_country_region</argument>
-            <argument name="eventPrefix" xsi:type="string">eriocnemis_directory_region_grid_collection</argument>
-            <argument name="eventObject" xsi:type="string">collection</argument>
-            <argument name="resourceModel" xsi:type="string">Eriocnemis\Directory\Model\ResourceModel\Region</argument>
-        </arguments>
-    </virtualType>
     <!-- plugin -->
     <type name="Magento\Directory\Model\ResourceModel\Region\Collection">
         <plugin name="eriocnemis_directory" type="Eriocnemis\Directory\Plugin\Directory\Model\ResourceModel\Region\CollectionPlugin"/>

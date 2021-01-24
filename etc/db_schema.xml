@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="directory_country_region">
+        <column xsi:type="smallint" name="status" unsigned="true" nullable="false" identity="false" default="1" comment="Region Status"/>
+        <index referenceId="DIRECTORY_COUNTRY_REGION_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+    </table>
+</schema>

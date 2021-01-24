@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- buttons configurations -->
+    <virtualType name="Eriocnemis\Directory\Ui\Component\Control\SaveSplitButton" type="Eriocnemis\Directory\Ui\Component\Control\SaveSplitButton">
+        <arguments>
+            <argument name="targetName" xsi:type="string">eriocnemis_directory_region_form.eriocnemis_directory_region_form</argument>
+            <argument name="aclResource" xsi:type="string">Magento_Backend::directory_region</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Eriocnemis\Directory\Ui\Component\Control\DeleteButton" type="Eriocnemis\Directory\Ui\Component\Control\DeleteButton">
+        <arguments>
+            <argument name="idFieldName" xsi:type="const">Eriocnemis\Directory\Api\Data\RegionInterface::REGION_ID</argument>
+            <argument name="aclResource" xsi:type="string">Magento_Backend::directory_region</argument>
+            <argument name="sortOrder" xsi:type="number">30</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Eriocnemis\Directory\Ui\Component\Control\Region\AddButton" type="Eriocnemis\Directory\Ui\Component\Control\AddButton">
+        <arguments>
+            <argument name="aclResource" xsi:type="string">Magento_Backend::directory_region</argument>
+            <argument name="sortOrder" xsi:type="number">30</argument>
+        </arguments>
+    </virtualType>
+    <!-- data provider configurations -->
+    <virtualType name="Eriocnemis\Directory\Ui\DataProvider\Region\FormModifierPool" type="Magento\Ui\DataProvider\Modifier\Pool"/>
+    <virtualType name="Eriocnemis\Directory\Ui\DataProvider\Region\ListingModifierPool" type="Magento\Ui\DataProvider\Modifier\Pool"/>
+    <type name="Eriocnemis\Directory\Ui\DataProvider\Region\FormDataProvider">
+        <arguments>
+            <argument name="modifierPool" xsi:type="object">Eriocnemis\Directory\Ui\DataProvider\Region\FormModifierPool</argument>
+        </arguments>
+    </type>
+    <type name="Eriocnemis\Directory\Ui\DataProvider\Region\ListingDataProvider">
+        <arguments>
+            <argument name="modifierPool" xsi:type="object">Eriocnemis\Directory\Ui\DataProvider\Region\ListingModifierPool</argument>
+        </arguments>
+    </type>
+    <!-- ui grid -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="eriocnemis_directory_region_listing_data_source" xsi:type="string">Eriocnemis\Directory\Model\ResourceModel\Region\Grid\Collection</item>
+                <item name="eriocnemis_directory_region_form_data_source" xsi:type="string">Eriocnemis\Directory\Model\ResourceModel\Region\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Eriocnemis\Directory\Model\ResourceModel\Region\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">directory_country_region</argument>
+            <argument name="eventPrefix" xsi:type="string">eriocnemis_directory_region_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">collection</argument>
+            <argument name="resourceModel" xsi:type="string">Eriocnemis\Directory\Model\ResourceModel\Region</argument>
+        </arguments>
+    </virtualType>
+</config>

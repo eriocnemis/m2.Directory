@@ -3,14 +3,11 @@
  * Copyright © Eriocnemis, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Eriocnemis\Directory\Model;
 
-use Magento\Framework\Data\Collection\AbstractDb;
-use Magento\Framework\Registry;
 use Magento\Framework\Model\AbstractModel;
-use Magento\Framework\Model\Context;
-use Magento\Framework\Model\ResourceModel\AbstractResource;
-use Eriocnemis\Directory\Model\Region\CompositeValidator;
 use Eriocnemis\Directory\Model\ResourceModel\Region as RegionResource;
 
 /**
@@ -42,42 +39,6 @@ class Region extends AbstractModel
     protected $_eventObject = 'region';
 
     /**
-     * Region composite validator
-     *
-     * @var CompositeValidator
-     */
-    protected $compositeValidator;
-
-    /**
-     * Initialize model
-     *
-     * @param Context $context
-     * @param Registry $registry
-     * @param CompositeValidator $compositeValidator
-     * @param AbstractResource $resource
-     * @param AbstractDb $resourceCollection
-     * @param array $data
-     */
-    public function __construct(
-        Context $context,
-        Registry $registry,
-        CompositeValidator $compositeValidator,
-        AbstractResource $resource = null,
-        AbstractDb $resourceCollection = null,
-        array $data = []
-    ) {
-        $this->compositeValidator = $compositeValidator;
-
-        parent::__construct(
-            $context,
-            $registry,
-            $resource,
-            $resourceCollection,
-            $data
-        );
-    }
-
-    /**
      * Model construct that should be used for object initialization
      *
      * @return void
@@ -88,14 +49,18 @@ class Region extends AbstractModel
     }
 
     /**
-     * Validate region attribute values
+     * Processing object after load data
      *
-     * @return array|bool
+     * @return $this
      */
-    public function validate()
+    public function afterLoad()
     {
-        $errors = $this->compositeValidator->validate($this);
-        return empty($errors) ? true : $errors;
+        if (!$this->hasData('labels')) {
+            /** @var RegionResource $resource */
+            $resource = $this->getResource();
+            $this->setData('labels', $resource->getLabels($this->getId()));
+        }
+        return parent::afterLoad();
     }
 
     /**
