@@ -60,19 +60,15 @@ class Edit extends Action implements HttpGetActionInterface
         $regionId = (int)$this->getRequest()->getParam(RegionInterface::REGION_ID);
         /** @var \Magento\Backend\Model\View\Result\Page $result */
         $result = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+        $result->setActiveMenu('Magento_Backend::directory');
+
+        $title = $result->getConfig()->getTitle();
+        $title->prepend((string)__('Geography'));
+        $title->prepend((string)__('Regions'));
 
         try {
-            $label = (string)__('New Region');
-            $title = (string)__('New Region');
-            if ($regionId) {
-                $region = $this->commandGetById->execute($regionId);
-                $label = (string)__('Edit Region');
-                $title = (string)__('Edit Region %1', $region->getDefaultName());
-            }
-
-            $result->setActiveMenu('Magento_Backend::directory');
-            $result->addBreadcrumb($label, $title);
-            $result->getConfig()->getTitle()->prepend($title);
+            $region = $this->commandGetById->execute($regionId);
+            $title->prepend($region->getDefaultName());
         } catch (NoSuchEntityException $e) {
             /** @var \Magento\Framework\Controller\Result\Redirect $result */
             $result = $this->resultRedirectFactory->create();

@@ -32,9 +32,12 @@ class NewAction extends Action implements HttpGetActionInterface
         /** @var \Magento\Backend\Model\View\Result\Page $result */
         $result = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         $result->setActiveMenu('Magento_Backend::directory');
-        $result->getConfig()->getTitle()->prepend(
-            (string)__('New Region')
-        );
+
+        $title = $result->getConfig()->getTitle();
+        $title->prepend((string)__('Geography'));
+        $title->prepend((string)__('Regions'));
+        $title->prepend((string)__('New Region'));
+
         return $result;
     }
 }

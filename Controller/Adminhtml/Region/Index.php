@@ -32,13 +32,11 @@ class Index extends Action implements HttpGetActionInterface
         /** @var \Magento\Backend\Model\View\Result\Page $result */
         $result = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         $result->setActiveMenu('Magento_Backend::directory');
-        $result->addBreadcrumb(
-            (string)__('Geography'),
-            (string)__('Regions')
-        );
-        $result->getConfig()->getTitle()->prepend(
-            (string)__('Regions')
-        );
+
+        $title = $result->getConfig()->getTitle();
+        $title->prepend((string)__('Geography'));
+        $title->prepend((string)__('Regions'));
+
         return $result;
     }
 }
