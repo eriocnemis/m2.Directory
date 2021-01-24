@@ -24,13 +24,21 @@ Extension version | [2.0.1](https://github.com/eriocnemis/m2.Directory/archive/2
     ```bash
     composer require eriocnemis/module-directory:2.0.*
     ```
+     For Magento CE (EE) 2.1.x
 
+    ```bash
+    composer require eriocnemis/module-directory:2.1.*
+    ```
+     For Magento CE (EE) 2.2.x
+
+    ```bash
+    composer require eriocnemis/module-directory:2.2.*
+    ```
      For Magento CE (EE) 2.3.x
 
     ```bash
     composer require eriocnemis/module-directory:2.3.*
     ```
-
      For Magento CE (EE) 2.4.x
 
     ```bash
@@ -75,6 +83,10 @@ Extension version | [2.0.1](https://github.com/eriocnemis/m2.Directory/archive/2
 ### Region Grid Page
 
 <img alt="Magento2 Directory" src="http://eriocnemis.com/image/m2/directory/regions.png" style="width:100%"/>
+
+## Related Modules
+
+[Directory Import Export](https://github.com/eriocnemis/m2.DirectoryImportExport) - The extension allows admin to quickly import regions via a CSV file by one click. This simplifies the data update process of regions.
 
 ## Uninstall
 
