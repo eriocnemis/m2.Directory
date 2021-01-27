@@ -8,7 +8,7 @@ declare(strict_types=1);
 namespace Eriocnemis\Directory\Api\Region;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
-use Eriocnemis\Directory\Api\Data\RegionSearchResultInterface;
+use Eriocnemis\Directory\Api\Data\Region\SearchResultInterface;
 
 /**
  * Find regions by search criteria command interface
@@ -21,7 +21,7 @@ interface GetListInterface
      * Retrieve list of regions
      *
      * @param SearchCriteriaInterface|null $searchCriteria
-     * @return RegionSearchResultInterface
+     * @return SearchResultInterface
      */
-    public function execute(SearchCriteriaInterface $searchCriteria = null): RegionSearchResultInterface;
+    public function execute(SearchCriteriaInterface $searchCriteria = null): SearchResultInterface;
 }

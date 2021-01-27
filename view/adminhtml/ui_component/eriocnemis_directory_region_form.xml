@@ -29,8 +29,8 @@
                 <class>reset</class>
                 <label translate="true">Reset</label>
             </button>
-            <button name="delete" class="Eriocnemis\Directory\Ui\Component\Control\DeleteButton"/>
-            <button name="save" class="Eriocnemis\Directory\Ui\Component\Control\SaveSplitButton"/>
+            <button name="delete" class="Eriocnemis\Directory\Ui\Component\Control\Region\DeleteButton"/>
+            <button name="save" class="Eriocnemis\Directory\Ui\Component\Control\Region\SaveSplitButton"/>
         </buttons>
     </settings>
     <dataSource name="eriocnemis_directory_region_form_data_source" component="Magento_Ui/js/form/provider">

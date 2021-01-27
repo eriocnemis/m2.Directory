@@ -10,6 +10,7 @@
     <!-- api preference -->
     <preference for="Eriocnemis\Directory\Api\Data\RegionInterface" type="Eriocnemis\Directory\Model\Data\Region"/>
     <preference for="Eriocnemis\Directory\Api\Data\Region\LabelInterface" type="Eriocnemis\Directory\Model\Data\Region\Label"/>
+    <preference for="Eriocnemis\Directory\Api\Data\Region\SearchResultInterface" type="Eriocnemis\Directory\Model\Data\Region\SearchResult"/>
     <preference for="Eriocnemis\Directory\Api\Region\SaveInterface" type="Eriocnemis\Directory\Spi\Region\Save"/>
     <preference for="Eriocnemis\Directory\Api\Region\GetByIdInterface" type="Eriocnemis\Directory\Spi\Region\GetById"/>
     <preference for="Eriocnemis\Directory\Api\Region\GetListInterface" type="Eriocnemis\Directory\Spi\Region\GetList"/>

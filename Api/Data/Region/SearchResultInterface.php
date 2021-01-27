@@ -5,16 +5,16 @@
  */
 declare(strict_types=1);
 
-namespace Eriocnemis\Directory\Api\Data;
+namespace Eriocnemis\Directory\Api\Data\Region;
 
-use Magento\Framework\Api\SearchResultsInterface;
+use Magento\Framework\Api\SearchResultsInterface as AbstractSearchResultsInterface;
 
 /**
  * Region search results interface
  *
  * @api
  */
-interface RegionSearchResultInterface extends SearchResultsInterface
+interface SearchResultInterface extends AbstractSearchResultsInterface
 {
     /**
      * Retrieve regions
