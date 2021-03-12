@@ -7,7 +7,8 @@ declare(strict_types=1);
 
 namespace Eriocnemis\Directory\Model\Data;
 
-use Magento\Framework\Api\AbstractSimpleObject;
+use Magento\Framework\Api\AbstractExtensibleObject;
+use Eriocnemis\Directory\Api\Data\RegionExtensionInterface;
 use Eriocnemis\Directory\Api\Data\RegionInterface;
 
 /**
@@ -15,7 +16,7 @@ use Eriocnemis\Directory\Api\Data\RegionInterface;
  *
  * @api
  */
-class Region extends AbstractSimpleObject implements RegionInterface
+class Region extends AbstractExtensibleObject implements RegionInterface
 {
     /**
      * Retrieve region id
@@ -141,5 +142,33 @@ class Region extends AbstractSimpleObject implements RegionInterface
     public function setStatus($status): void
     {
         $this->setData(self::STATUS, $status);
+    }
+
+    /**
+     * Retrieve existing extension attributes object or create a new one
+     *
+     * @return \Eriocnemis\Directory\Api\Data\RegionExtensionInterface
+     */
+    public function getExtensionAttributes()
+    {
+        /** @var \Eriocnemis\Directory\Api\Data\RegionExtensionInterface $extensionAttributes */
+        $extensionAttributes = $this->_getExtensionAttributes();
+        if (null === $extensionAttributes) {
+            /** @var \Eriocnemis\Directory\Api\Data\RegionExtensionInterface $extensionAttributes */
+            $extensionAttributes = $this->extensionFactory->create(RegionInterface::class);
+            $this->setExtensionAttributes($extensionAttributes);
+        }
+        return $extensionAttributes;
+    }
+
+    /**
+     * Set an extension attributes object
+     *
+     * @param \Eriocnemis\Directory\Api\Data\RegionExtensionInterface $extensionAttributes
+     * @return void
+     */
+    public function setExtensionAttributes(RegionExtensionInterface $extensionAttributes): void
+    {
+        $this->_setExtensionAttributes($extensionAttributes);
     }
 }

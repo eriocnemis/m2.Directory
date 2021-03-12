@@ -7,12 +7,14 @@ declare(strict_types=1);
 
 namespace Eriocnemis\Directory\Api\Data;
 
+use Magento\Framework\Api\ExtensibleDataInterface;
+
 /**
  * Basic interface with data needed for region
  *
  * @api
  */
-interface RegionInterface
+interface RegionInterface extends ExtensibleDataInterface
 {
     /**
      * Field region id
@@ -133,4 +135,19 @@ interface RegionInterface
      * @return void
      */
     public function setStatus($status): void;
+
+    /**
+     * Retrieve existing extension attributes object or create a new one
+     *
+     * @return \Eriocnemis\Directory\Api\Data\RegionExtensionInterface
+     */
+    public function getExtensionAttributes();
+
+    /**
+     * Set an extension attributes object
+     *
+     * @param \Eriocnemis\Directory\Api\Data\RegionExtensionInterface $extensionAttributes
+     * @return void
+     */
+    public function setExtensionAttributes(RegionExtensionInterface $extensionAttributes): void;
 }

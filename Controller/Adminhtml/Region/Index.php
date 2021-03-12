@@ -23,7 +23,7 @@ class Index extends Action implements HttpGetActionInterface
     const ADMIN_RESOURCE = 'Eriocnemis_Directory::region';
 
     /**
-     * Export job list
+     * Region list
      *
      * @return ResultInterface
      */

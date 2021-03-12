@@ -12,6 +12,7 @@ use Eriocnemis\Directory\Api\Data\RegionInterface;
 use Eriocnemis\Directory\Api\Data\RegionInterfaceFactory;
 use Eriocnemis\Directory\Api\Data\Region\LabelInterface;
 use Eriocnemis\Directory\Api\Data\Region\LabelInterfaceFactory;
+use Eriocnemis\Directory\Api\Data\RegionExtensionFactory;
 
 /**
  * Convert model to data
@@ -33,17 +34,27 @@ class ToDataConverter
     private $labelDataFactory;
 
     /**
+     * Region extension factory
+     *
+     * @var RegionExtensionFactory
+     */
+    private $extensionFactory;
+
+    /**
      * Initialize converter
      *
      * @param RegionInterfaceFactory $regionDataFactory
      * @param LabelInterfaceFactory $labelDataFactory
+     * @param RegionExtensionFactory $extensionFactory
      */
     public function __construct(
         RegionInterfaceFactory $regionDataFactory,
-        LabelInterfaceFactory $labelDataFactory
+        LabelInterfaceFactory $labelDataFactory,
+        RegionExtensionFactory $extensionFactory
     ) {
         $this->regionDataFactory = $regionDataFactory;
         $this->labelDataFactory = $labelDataFactory;
+        $this->extensionFactory = $extensionFactory;
     }
 
     /**
@@ -54,7 +65,8 @@ class ToDataConverter
      */
     public function convert(AbstractModel $model): RegionInterface
     {
-        $region = $this->regionDataFactory->create(['data' => $model->getData()]);
+        $data = $this->convertExtensionAttributesToObject($model->getData());
+        $region = $this->regionDataFactory->create(['data' => $data]);
         /* translate labels into objects */
         if ($region->getLabels()) {
             $labels = [];
@@ -65,5 +77,20 @@ class ToDataConverter
             $region->setLabels($labels);
         }
         return $region;
+    }
+
+    /**
+     * Convert extension attributes of model to object if it is an array
+     *
+     * @param array $data
+     * @return array
+     */
+    private function convertExtensionAttributesToObject(array $data)
+    {
+        if (isset($data['extension_attributes']) && is_array($data['extension_attributes'])) {
+            /** @var RegionExtensionFactory $attributes */
+            $data['extension_attributes'] = $this->extensionFactory->create(['data' => $data['extension_attributes']]);
+        }
+        return $data;
     }
 }

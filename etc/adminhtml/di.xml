@@ -11,19 +11,19 @@
     <virtualType name="Eriocnemis\Directory\Ui\Component\Control\Region\SaveSplitButton" type="Eriocnemis\Directory\Ui\Component\Control\SaveSplitButton">
         <arguments>
             <argument name="targetName" xsi:type="string">eriocnemis_directory_region_form.eriocnemis_directory_region_form</argument>
-            <argument name="aclResource" xsi:type="string">Magento_Backend::directory_region</argument>
+            <argument name="aclResource" xsi:type="string">Eriocnemis_Directory::region_edit</argument>
         </arguments>
     </virtualType>
     <virtualType name="Eriocnemis\Directory\Ui\Component\Control\Region\DeleteButton" type="Eriocnemis\Directory\Ui\Component\Control\DeleteButton">
         <arguments>
             <argument name="idFieldName" xsi:type="const">Eriocnemis\Directory\Api\Data\RegionInterface::REGION_ID</argument>
-            <argument name="aclResource" xsi:type="string">Magento_Backend::directory_region</argument>
+            <argument name="aclResource" xsi:type="string">Eriocnemis_Directory::region_delete</argument>
             <argument name="sortOrder" xsi:type="number">30</argument>
         </arguments>
     </virtualType>
     <virtualType name="Eriocnemis\Directory\Ui\Component\Control\Region\AddButton" type="Eriocnemis\Directory\Ui\Component\Control\AddButton">
         <arguments>
-            <argument name="aclResource" xsi:type="string">Magento_Backend::directory_region</argument>
+            <argument name="aclResource" xsi:type="string">Eriocnemis_Directory::region_edit</argument>
             <argument name="sortOrder" xsi:type="number">30</argument>
         </arguments>
     </virtualType>
@@ -45,7 +45,6 @@
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="eriocnemis_directory_region_listing_data_source" xsi:type="string">Eriocnemis\Directory\Model\ResourceModel\Region\Grid\Collection</item>
-                <item name="eriocnemis_directory_region_form_data_source" xsi:type="string">Eriocnemis\Directory\Model\ResourceModel\Region\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
