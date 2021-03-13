@@ -10,7 +10,7 @@ namespace Eriocnemis\Directory\Model\Region\Validator;
 use Magento\Framework\Validation\ValidationResult;
 use Magento\Framework\Validation\ValidationResultFactory;
 use Eriocnemis\Directory\Api\Data\RegionInterface;
-use Eriocnemis\Directory\Api\Region\ValidatorInterface;
+use Eriocnemis\Directory\Model\Region\ValidatorInterface;
 
 /**
  * Check that default name is valid

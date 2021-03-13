@@ -15,9 +15,11 @@
     <preference for="Eriocnemis\Directory\Api\Region\GetByIdInterface" type="Eriocnemis\Directory\Spi\Region\GetById"/>
     <preference for="Eriocnemis\Directory\Api\Region\GetListInterface" type="Eriocnemis\Directory\Spi\Region\GetList"/>
     <preference for="Eriocnemis\Directory\Api\Region\DeleteByIdInterface" type="Eriocnemis\Directory\Spi\Region\DeleteById"/>
-    <preference for="Eriocnemis\Directory\Api\Region\ValidatorInterface" type="Eriocnemis\Directory\Spi\Region\Validator"/>
+    <preference for="Eriocnemis\Directory\Api\Region\ValidateInterface" type="Eriocnemis\Directory\Spi\Region\Validate"/>
+    <preference for="Eriocnemis\Directory\Api\Region\ResolveInterface" type="Eriocnemis\Directory\Spi\Region\Resolve"/>
+    <preference for="Eriocnemis\Directory\Model\Region\ValidatorInterface" type="Eriocnemis\Directory\Model\Region\Validator"/>
     <!-- validator configuration -->
-    <type name="Eriocnemis\Directory\Spi\Region\Validator">
+    <type name="Eriocnemis\Directory\Model\Region\Validator">
         <arguments>
             <argument name="validators" xsi:type="array">
                 <item name="name" xsi:type="object">Eriocnemis\Directory\Model\Region\Validator\DefaultNameValidator</item>
@@ -27,6 +29,16 @@
             </argument>
         </arguments>
     </type>
+    <!-- handler configuration
+    <virtualType name="DirectoryRegionHandlerPool" type="Eriocnemis\Directory\Model\ResourceModel\Region\Handler\HandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="load" xsi:type="object">Eriocnemis\Directory\Model\ResourceModel\Region\Handler\LoadHandler\Proxy</item>
+                <item name="save" xsi:type="object">Eriocnemis\Directory\Model\ResourceModel\Region\Handler\SaveHandler\Proxy</item>
+                <item name="delete" xsi:type="object">Eriocnemis\Directory\Model\ResourceModel\Region\Handler\DeleteHandler\Proxy</item>
+            </argument>
+        </arguments>
+    </virtualType> -->
     <!-- plugin -->
     <type name="Magento\Directory\Model\ResourceModel\Region\Collection">
         <plugin name="eriocnemis_directory" type="Eriocnemis\Directory\Plugin\Directory\Model\ResourceModel\Region\CollectionPlugin"/>

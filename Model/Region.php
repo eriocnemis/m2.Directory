@@ -12,15 +12,6 @@ use Eriocnemis\Directory\Model\ResourceModel\Region as RegionResource;
 
 /**
  * Region model
- *
- * @method Region setDefaultName(string $name)
- * @method string getDefaultName()
- * @method Region setCountryId(string $countryId)
- * @method string getCountryId()
- * @method Region setCode(string $code)
- * @method string getCode()
- * @method Region setLabels(array $labels)
- * @method array getLabels()
  */
 class Region extends AbstractModel
 {

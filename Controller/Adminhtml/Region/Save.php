@@ -12,15 +12,11 @@ use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultInterface;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Validation\ValidationException;
-use Magento\Framework\Api\DataObjectHelper;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Eriocnemis\Directory\Api\Data\RegionInterface;
-use Eriocnemis\Directory\Api\Data\RegionInterfaceFactory;
-use Eriocnemis\Directory\Api\Region\GetByIdInterface;
+use Eriocnemis\Directory\Api\Region\ResolveInterface;
 use Eriocnemis\Directory\Api\Region\SaveInterface;
 
 /**
@@ -34,18 +30,11 @@ class Save extends Action implements HttpPostActionInterface
     const ADMIN_RESOURCE = 'Eriocnemis_Directory::region_edit';
 
     /**
-     * Region factory
+     * Resolve command
      *
-     * @var RegionInterfaceFactory
+     * @var ResolveInterface
      */
-    private $factory;
-
-    /**
-     * Get by id command
-     *
-     * @var GetByIdInterface
-     */
-    private $commandGetById;
+    private $commandResolve;
 
     /**
      * Save command
@@ -53,13 +42,6 @@ class Save extends Action implements HttpPostActionInterface
      * @var SaveInterface
      */
     private $commandSave;
-
-    /**
-     * Data object helper
-     *
-     * @var DataObjectHelper
-     */
-    private $dataObjectHelper;
 
     /**
      * Data persistor
@@ -79,26 +61,20 @@ class Save extends Action implements HttpPostActionInterface
      * Initialize controller
      *
      * @param Context $context
-     * @param RegionInterfaceFactory $factory
-     * @param GetByIdInterface $commandGetById
+     * @param ResolveInterface $commandResolve
      * @param SaveInterface $commandSave
-     * @param DataObjectHelper $dataObjectHelper
      * @param DataPersistorInterface $dataPersistor
      * @param LoggerInterface $logger
      */
     public function __construct(
         Context $context,
-        RegionInterfaceFactory $factory,
-        GetByIdInterface $commandGetById,
+        ResolveInterface $commandResolve,
         SaveInterface $commandSave,
-        DataObjectHelper $dataObjectHelper,
         DataPersistorInterface $dataPersistor,
         LoggerInterface $logger
     ) {
-        $this->factory = $factory;
-        $this->commandGetById = $commandGetById;
+        $this->commandResolve = $commandResolve;
         $this->commandSave = $commandSave;
-        $this->dataObjectHelper = $dataObjectHelper;
         $this->dataPersistor = $dataPersistor;
         $this->logger = $logger;
 
@@ -115,9 +91,10 @@ class Save extends Action implements HttpPostActionInterface
     public function execute(): ResultInterface
     {
         $data = $this->getRequest()->getPost('region');
+        $regionId = $data[RegionInterface::REGION_ID] ?? null;
+
         /** @var ResultInterface $result */
         $result = $this->resultRedirectFactory->create();
-
         if (!$this->getRequest()->isPost() || empty($data)) {
             $this->messageManager->addErrorMessage(
                 (string)__('Wrong request.')
@@ -126,10 +103,10 @@ class Save extends Action implements HttpPostActionInterface
             return $result;
         }
 
-        $regionId = $data[RegionInterface::REGION_ID] ?? null;
         try {
-            $region = $this->initRegion($regionId);
-            $this->processSave($region, $data);
+            $this->dataPersistor->set('eriocnemis_region', $data);
+            $region = $this->commandResolve->execute($regionId, $data);
+            $this->commandSave->execute($region);
             $this->messageManager->addSuccessMessage(
                 (string)__('The Region has been saved.')
             );
@@ -154,36 +131,6 @@ class Save extends Action implements HttpPostActionInterface
             $this->redirectAfterFailure($result, $regionId);
         }
         return $result;
-    }
-
-    /**
-     * Initialize region
-     *
-     * @param int|null $regionId
-     * @return RegionInterface
-     * @throws NoSuchEntityException
-     */
-    private function initRegion($regionId): RegionInterface
-    {
-        return null !== $regionId
-            ? $this->commandGetById->execute((int)$regionId)
-            : $this->factory->create();
-    }
-
-    /**
-     * Hydrate data from request and save region
-     *
-     * @param RegionInterface $region
-     * @param mixed[] $data
-     * @return void
-     * @throws CouldNotSaveException
-     * @throws ValidationException
-     */
-    private function processSave(RegionInterface $region, array $data): void
-    {
-        $this->dataPersistor->set('eriocnemis_region', $data);
-        $this->dataObjectHelper->populateWithArray($region, $data, RegionInterface::class);
-        $this->commandSave->execute($region);
     }
 
     /**

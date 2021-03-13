@@ -5,13 +5,12 @@
  */
 declare(strict_types=1);
 
-namespace Eriocnemis\Directory\Spi\Region;
+namespace Eriocnemis\Directory\Model\Region;
 
 use Magento\Framework\Validation\ValidationResult;
 use Magento\Framework\Validation\ValidationResultFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Eriocnemis\Directory\Api\Data\RegionInterface;
-use Eriocnemis\Directory\Api\Region\ValidatorInterface;
 
 /**
  * Region composite validator

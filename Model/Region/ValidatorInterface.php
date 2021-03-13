@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Eriocnemis\Directory\Api\Region;
+namespace Eriocnemis\Directory\Model\Region;
 
 use Magento\Framework\Validation\ValidationResult;
 use Eriocnemis\Directory\Api\Data\RegionInterface;

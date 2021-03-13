@@ -10,10 +10,9 @@ namespace Eriocnemis\Directory\Spi\Region;
 use Psr\Log\LoggerInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Validation\ValidationException;
-use Magento\Framework\Validation\ValidationResult;
 use Eriocnemis\Directory\Api\Data\RegionInterface;
-use Eriocnemis\Directory\Api\Region\ValidatorInterface;
 use Eriocnemis\Directory\Api\Region\SaveInterface;
+use Eriocnemis\Directory\Api\Region\ValidateInterface;
 use Eriocnemis\Directory\Model\Region\Converter\ToDataConverter;
 use Eriocnemis\Directory\Model\Region\Converter\ToModelConverter;
 use Eriocnemis\Directory\Model\ResourceModel\Region as RegionResource;
@@ -33,11 +32,11 @@ class Save implements SaveInterface
     private $resource;
 
     /**
-     * Region validator
+     * Validate command
      *
-     * @var ValidatorInterface
+     * @var ValidateInterface
      */
-    private $validator;
+    private $commandValidate;
 
     /**
      * Region data converter
@@ -64,20 +63,20 @@ class Save implements SaveInterface
      * Initialize command
      *
      * @param RegionResource $resource
-     * @param ValidatorInterface $validator
+     * @param ValidateInterface $commandValidate
      * @param ToModelConverter $toModelConverter
      * @param ToDataConverter $toDataConverter
      * @param LoggerInterface $logger
      */
     public function __construct(
         RegionResource $resource,
-        ValidatorInterface $validator,
+        ValidateInterface $commandValidate,
         ToModelConverter $toModelConverter,
         ToDataConverter $toDataConverter,
         LoggerInterface $logger
     ) {
         $this->resource = $resource;
-        $this->validator = $validator;
+        $this->commandValidate = $commandValidate;
         $this->toModelConverter = $toModelConverter;
         $this->toDataConverter = $toDataConverter;
         $this->logger = $logger;
@@ -93,11 +92,7 @@ class Save implements SaveInterface
      */
     public function execute(RegionInterface $region): RegionInterface
     {
-        /** @var ValidationResult $result */
-        $result = $this->validator->validate($region);
-        if (!$result->isValid()) {
-            throw new ValidationException(__('Validation Failed'), null, 0, $result);
-        }
+        $this->commandValidate->execute($region);
         /** @var \Eriocnemis\Directory\Model\Region $model */
         $model = $this->toModelConverter->convert($region);
         try {

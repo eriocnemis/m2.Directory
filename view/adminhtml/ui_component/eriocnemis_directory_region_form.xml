@@ -35,7 +35,7 @@
     <dataSource name="eriocnemis_directory_region_form_data_source" component="Magento_Ui/js/form/provider">
         <settings>
             <submitUrl path="*/*/save"/>
-            <!--<validateUrl path="*/*/validate"/>-->
+            <validateUrl path="*/*/validate"/>
         </settings>
         <dataProvider class="Eriocnemis\Directory\Ui\DataProvider\Region\FormDataProvider" name="eriocnemis_directory_region_form_data_source">
             <settings>

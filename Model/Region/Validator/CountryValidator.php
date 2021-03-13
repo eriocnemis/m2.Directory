@@ -11,7 +11,7 @@ use Magento\Framework\Validation\ValidationResult;
 use Magento\Framework\Validation\ValidationResultFactory;
 use Magento\Directory\Api\CountryInformationAcquirerInterface;
 use Eriocnemis\Directory\Api\Data\RegionInterface;
-use Eriocnemis\Directory\Api\Region\ValidatorInterface;
+use Eriocnemis\Directory\Model\Region\ValidatorInterface;
 
 /**
  * Check that country is valid
